@@ -5,6 +5,8 @@ node_modules/
 platforms/
 plugins/
 
+www/js/config/insight-conf.js
+
 app/bower_components/
 .sass-cache/
 .tmp/
