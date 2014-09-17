@@ -1,0 +1,20 @@
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+node_modules/
+platforms/
+plugins/
+
+app/bower_components/
+.sass-cache/
+.tmp/
+coverage/
+hooks/
+merges/
+platforms/
+npm-debug.log
+
+*.DS_Store
+*.log
+*.swp
+*~
