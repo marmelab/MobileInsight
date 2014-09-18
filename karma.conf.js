@@ -3,15 +3,15 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ['jasmine'],
     files: [
-        './www/lib/angular/angular.js',  
-        './www/lib/angular-mocks/angular-mocks.js',  
-        './www/lib/angular-scenario/angular-scenario.js',
-        './www/lib/angular-sanitize/angular-sanitize.min.js',  
-        './www/lib/angular-ui-router/release/angular-ui-router.js',  
-        './www/lib/ionic/js/ionic.js  ',
-        './www/lib/ionic/js/ionic-angular.min.js',
-        './www/js/**/*.js',
-        './test/services/projects.js'
+        'www/lib/angular/angular.js',  
+        'www/lib/angular-mocks/angular-mocks.js',  
+        'www/lib/angular-scenario/angular-scenario.js',
+        'www/lib/angular-sanitize/angular-sanitize.min.js',  
+        'www/lib/angular-ui-router/release/angular-ui-router.js',  
+        // 'www/lib/ionic/js/ionic.js  ',
+        // 'www/lib/ionic/js/ionic-angular.min.js',
+        // 'www/js/**/*.js',
+        'tests/unit/controllers/*.js'
     ],
 
     // web server port
