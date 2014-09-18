@@ -3,6 +3,34 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
-    <p>config your insight params here</p>
+    <div ng-if="!insightParams">
+        
+<h3>Parametrer votre compte insight</h3>
+      <form name="configureInsight" role="form">
+
+            <div class="form-group">
+            <input type="text" class="form-control" name="userId" id="userId" ng-required="true" ng-minlength="2" placeholder="User Id" ng-model="userdatas.userid" autocomplete="off">
+            <span ng-show="configureInsight.userId.$error.minlength">au moins 2 lettres</span>
+            </div>
+
+            <div class="form-group">
+            <input type="text" class="form-control" name="userToken" id="userToken" ng-required="true" ng-minlength="2" placeholder="User Token" ng-model="userdatas.usertoken" autocomplete="off">
+            <span ng-show="configureInsight.userId.$error.minlength">au moins 2 lettres</span>
+            </div>    
+
+            <div class="form-group">
+                <center>
+                  <button ng-click="saveUserParams()" type="submit" class="btn btn-success" ng-disabled="configureInsight.$invalid">Enregistrer vos paramètres</button>
+                </center>
+            </div>
+
+      </form>
+
+
+    </div>
+    <div ng-if="insightParams">
+        <p>Vous êtes connecté en tant que blabla</p>
+        <p><a ng-click="clearInsightParams()" class="btn btn-danger">Se deconnecter</a></p>
+    </div>
   </ion-content>
 </ion-view>
