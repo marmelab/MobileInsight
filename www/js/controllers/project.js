@@ -2,8 +2,8 @@
 
 angular.module('controllers')
     .controller('ProjectCtrl', 
-         ["$scope", "$stateParams", "Restangular", function ($scope, $stateParams, Restangular) {
-            Restangular.one('projects', $stateParams.projectId).get().then(function(project) {
+         ["$scope", "$stateParams", "projects", function ($scope, $stateParams, projects) {
+            projects.getOne($stateParams.projectId).then(function(project) {
               $scope.project = project;
               console.log(project)
             });
