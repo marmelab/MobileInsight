@@ -4,28 +4,23 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
     <div ng-if="!insightParams">
-        
-<h3>Parametrer votre compte insight</h3>
-      <form name="configureInsight" role="form">
 
-            <div class="form-group">
-            <input type="text" class="form-control" name="userId" id="userId" ng-required="true" ng-minlength="2" placeholder="User Id" ng-model="userdatas.userid" autocomplete="off">
-            <span ng-show="configureInsight.userId.$error.minlength">au moins 2 lettres</span>
-            </div>
-
-            <div class="form-group">
-            <input type="text" class="form-control" name="userToken" id="userToken" ng-required="true" ng-minlength="2" placeholder="User Token" ng-model="userdatas.usertoken" autocomplete="off">
-            <span ng-show="configureInsight.userId.$error.minlength">au moins 2 lettres</span>
-            </div>    
-
-            <div class="form-group">
-                <center>
-                  <button ng-click="saveUserParams()" type="submit" class="btn btn-success" ng-disabled="configureInsight.$invalid">Enregistrer vos paramètres</button>
-                </center>
-            </div>
-
-      </form>
-
+<form name="configureInsight" role="form" ng-submit="saveUserParams()" >
+<div class="list list-inset">
+  <label class="item item-input">
+    <input type="text" class="form-control" name="userId" id="userId" ng-required="true" ng-minlength="2" placeholder="User Id" ng-model="userdatas.userid" autocomplete="off">
+  </label>
+  <label class="item item-input">
+    <input type="text" class="form-control" name="userToken" id="userToken" ng-required="true" ng-minlength="2" placeholder="User Token" ng-model="userdatas.usertoken" autocomplete="off">
+  </label>
+</div>
+<div class="padding">
+    <button type="submit" class="button button-block button-positive activated" ng-disabled="configureInsight.$invalid">Enregistrer vos paramètres</button>
+  </div>
+</form>
+<span ng-show="configureInsight.userId.$error.minlength">au moins 2 lettres</span>
+<span ng-show="configureInsight.userToken.$error.minlength">au moins 2 lettres</span>
+<span ng-show="userError">Les paramètres ne sont pas valides</span>
 
     </div>
     <div ng-if="insightParams">

@@ -29,9 +29,16 @@ angular.module('services')
             return Restangular.one('projects', projectId).get()
         };
 
+        var checkUserParams = function (userdatas) {
+            var testUrl = 'https://' + userdatas.userid + ':' + userdatas.usertoken + '@' + insight.uri ;
+            Restangular.setBaseUrl(testUrl);
+            return Restangular.all('projects').getList();
+        };
+
         return {
           getList: getList,
-          getOne: getOne
+          getOne: getOne,
+          checkUserParams: checkUserParams
         };
 
   }]);

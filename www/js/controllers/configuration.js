@@ -2,54 +2,75 @@
 
 angular.module('controllers')
     .controller('ConfigurationCtrl', 
-        ["$scope", "localstorage", "$http", "insight", function ($scope, localstorage, $http, insight) {
+        ["$scope", "localstorage", "$http", "insight", "projects", "userconfig", function ($scope, localstorage, $http, insight, projects, userconfig) {
 
-            $scope.getMessage = function(name) {
-                return 'Hello ' + name;
-            };
+            $scope.insightParams = false;
+            $scope.userError = false;
 
             $scope.userdatas = {
                 userid: '',
                 usertoken: ''
             };
 
-            $scope.insightParams = false;
-
-            var updateInsightParams = function () {
-                var datasStorage = localstorage.getObject('insightParams');
-                if (datasStorage.userid != undefined) {
-                    $scope.insightParams = datasStorage;
-                }
-                console.log('après un check : ' + $scope.insightParams.userid);
-            };
-
             $scope.saveUserParams = function() {
-                var testUrl = 'https://' + $scope.userdatas.userid + ':' + $scope.userdatas.usertoken + '@' + insight.uri + 'projects';
-                $http({method: 'GET', url: testUrl}).
-                    success(function(data, status, headers, config) {
-                        console.log('MARCHE BIEN');
-                    }).
-                    error(function(data, status, headers, config) {
-                        console.log('MARCHE PAS');
-                    });
-                // setInsightParams($scope.userdatas);
-                // updateInsightParams();
-                // $scope.userdatas = {
-                //     userid: '',
-                //     usertoken: ''
-                // };
-            };
 
-            var setInsightParams = function (insightParams) {
-                localstorage.setObject('insightParams', insightParams);
+                // userconfig.test($scope.userdatas).
+                // success(function() {
+                //     console.log('OUI');
+                //     $scope.userError = false;
+                //     clearUserDatas();
+                // }).
+                // error(function() {
+                //     console.log('NON');
+                //     $scope.userError = true;
+                // });
+                              
+                // projects.checkUserParams($scope.userdatas).then(function(projects){
+                //         setInsightParams($scope.userdatas);
+                //         updateInsightParams();
+                //         clearUserDatas();
+                //         $scope.userError = false;
+                // }, function(err) {
+                //     clearUserDatas();
+                //     $scope.userError = true;
+                // });
+
+                var testUrl = 'https://' + $scope.userdatas.userid + ':' + $scope.userdatas.usertoken + '@' + insight.uri + 'projects';
+                $http.get(testUrl).
+                    success(function() {
+                        setInsightParams($scope.userdatas);
+                        updateInsightParams();
+                        clearUserDatas();
+                        $scope.userError = false;
+                    }).
+                    error(function() {
+                        clearUserDatas();
+                        $scope.userError = true;
+                    });
             };
 
             $scope.clearInsightParams = function () {
                 localstorage.removeObject('insightParams');
                 $scope.insightParams = false;
             };
-            // setInsightParams('monid', 'montoken');
+
+            var updateInsightParams = function () {
+                var datasStorage = localstorage.getObject('insightParams');
+                if (datasStorage.userid != undefined) {
+                    $scope.insightParams = datasStorage;
+                }
+            };
+
+            var setInsightParams = function (insightParams) {
+                localstorage.setObject('insightParams', insightParams);
+            }; 
+
+            var clearUserDatas = function () {
+                $scope.userdatas = {
+                    userid: '',
+                    usertoken: ''
+                };
+            }; 
+
             updateInsightParams();
-            // clearInsightParams();
-            // checkInsightParams();
     }]);
