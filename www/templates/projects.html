@@ -4,8 +4,8 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
     <ion-list>
-      <ion-item ng-repeat="project in projects" href="#/app/projects/{{project.id}}">
-        {{project.title}} ({{project.id}})
+      <ion-item ng-repeat="project in projects" href="#/app/projects/{{project.id.__cdata}}">
+        {{project.name.__cdata}}
       </ion-item>
     </ion-list>
   </ion-content>

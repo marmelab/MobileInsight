@@ -1,8 +1,0 @@
-'use strict';
-
-angular.module('config')
-  .constant('insight-conf', {
-    insight-uri: 'insight.sensiolabs.com/api/',
-    insight-id: 'your-insight-id',
-    insight-token: 'your-insight-token'
-});

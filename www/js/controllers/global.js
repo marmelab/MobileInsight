@@ -2,6 +2,10 @@
 
 angular.module('controllers')
     .controller('GlobalCtrl', 
-        ["$scope", function ($scope) {
-
+        ["$scope", "Restangular", function ($scope, Restangular) {
+            var Project = Restangular.all('projects');
+            Project.getList().then(function(projects){
+                 $scope.projects = projects;
+             })
+            
     }]);

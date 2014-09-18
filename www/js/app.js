@@ -1,14 +1,28 @@
 'use strict';
 
 angular.module('controllers', []);
-angular.module('config', []);
-angular.module('services', ['config']);
+angular.module('services', ['cb.x2js']);
 
-angular.module('mobile-insight', [
+angular.module('insightMobile', [
   'ionic', 
   'controllers',
-  'services'
+  'services',
+  'restangular'
 ])
+.config(function(RestangularProvider) {
+    RestangularProvider.setBaseUrl('https://insight.sensiolabs.com/api/');
+    RestangularProvider.setResponseInterceptor(
+      function(data, operation, what) {
+        var xmlParser = new X2JS();
+        if (operation == 'getList') {
+            return xmlParser.xml_str2json(data).projects.project;
+        }
+        if (operation == 'get') {
+            return xmlParser.xml_str2json(data).project;
+        }
+        return xmlParser.xml_str2json(data);
+    });
+})
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 

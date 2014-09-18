@@ -14,6 +14,10 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/x2js/xml2json.js"></script>
+    <script src="lib/angular-x2js/src/x2js.js"></script>
+    <script src="lib/restangular/dist/restangular.min.js"></script>
+    <script src="lib/lodash/dist/lodash.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -24,11 +28,10 @@
     <script src="js/controllers/global.js"></script>
     <script src="js/controllers/project.js"></script>
     <script src="js/controllers/projects.js"></script>
-    <script src="js/services/insight-ws.js"></script>
-    <script src="js/config/insight-conf.js"></script>
+    <script src="js/services/insight.js"></script>
   </head>
 
-  <body ng-app="mobile-insight">
+  <body ng-app="insightMobile">
     <ion-nav-view></ion-nav-view>
   </body>
 </html>
