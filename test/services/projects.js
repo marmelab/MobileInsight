@@ -1,5 +1,3 @@
-
-
 describe('projects services', function() {
   // Load the module with MainController
   beforeEach(module('insightMobile'));

@@ -50,30 +50,7 @@ gulp.task('git-check', function(done) {
   done();
 });
 
-/**
- * Run test once and exit
- */
-gulp.task('test', function (done) {
-  karma.start({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: true
-  }, done);
-});
-
-/**
- * Watch for file changes and re-run tests on each change
- */
-gulp.task('tdd', function (done) {
-  karma.start({
-    configFile: __dirname + '/karma.conf.js'
-  }, done);
-});
-
-gulp.task('test2', function() {
-  // Be sure to return the stream
-  // NOTE: Using the fake './foobar' so as to run the files
-  // listed in karma.conf.js INSTEAD of what was passed to
-  // gulp.src !
+gulp.task('test', function() {
   return gulp.src('./foobar')
     .pipe(karma({
       configFile: 'karma.conf.js',
@@ -86,6 +63,3 @@ gulp.task('test2', function() {
     });
 });
 
-gulp.task('autotest', function() {
-  return gulp.watch(['www/js/**/*.js', 'test/spec/*.js'], ['test']);
-});
