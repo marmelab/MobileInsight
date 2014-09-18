@@ -6,6 +6,7 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var karma = require('gulp-karma');
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -47,4 +48,44 @@ gulp.task('git-check', function(done) {
     process.exit(1);
   }
   done();
+});
+
+/**
+ * Run test once and exit
+ */
+gulp.task('test', function (done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done);
+});
+
+/**
+ * Watch for file changes and re-run tests on each change
+ */
+gulp.task('tdd', function (done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js'
+  }, done);
+});
+
+gulp.task('test2', function() {
+  // Be sure to return the stream
+  // NOTE: Using the fake './foobar' so as to run the files
+  // listed in karma.conf.js INSTEAD of what was passed to
+  // gulp.src !
+  return gulp.src('./foobar')
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'run'
+    }))
+    .on('error', function(err) {
+      // Make sure failed tests cause gulp to exit non-zero
+      console.log(err);
+      this.emit('end'); //instead of erroring the stream, end it
+    });
+});
+
+gulp.task('autotest', function() {
+  return gulp.watch(['www/js/**/*.js', 'test/spec/*.js'], ['test']);
 });
