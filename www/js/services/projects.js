@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('services')
-  .service('projects', ["insight", "x2js", "Restangular", function projects(insight, x2js, Restangular) {
+  .service('projects', ["insight", "projectparser", "x2js", "Restangular", "$q", function projects(insight, projectparser, x2js, Restangular, $q) {
     
         var getInsightBaseUrl = function () {
             var userConf = 'https://' + insight.id + ':' + insight.token;
@@ -22,11 +22,28 @@ angular.module('services')
         });
 
         var getList = function () {
-            return Restangular.all('projects').getList();
+            var deferred = $q.defer();
+            Restangular.all('projects').getList().then(function(projects){
+                var projectsList = {
+                    nbProjects: projects.length,
+                    projects: []
+                };
+                projects.forEach(function(project){
+                    projectsList.projects.push(projectparser.parseListProject(project));
+                })
+                deferred.resolve(projectsList);
+            }, deferred.reject);
+
+            return deferred.promise;
         };
 
         var getOne = function (projectId) {
-            return Restangular.one('projects', projectId).get()
+            var deferred = $q.defer();
+            Restangular.one('projects', projectId).get().then(function(project){
+                deferred.resolve(projectparser.parseSingleProject(project));
+            }, deferred.reject);
+
+            return deferred.promise;
         };
 
         var checkUserParams = function (userdatas) {

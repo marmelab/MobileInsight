@@ -5,6 +5,5 @@ angular.module('controllers')
          ["$scope", "$stateParams", "projects", function ($scope, $stateParams, projects) {
             projects.getOne($stateParams.projectId).then(function(project) {
               $scope.project = project;
-              console.log(project)
             });
     }]);

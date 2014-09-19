@@ -11,6 +11,7 @@ describe('MessageCtrl', function() {
     }));
 
     it('should get the correct message', function() { 
-        var message = $scope.getMessage('Frank'); expect(message).toBe('Salut Franck');
+        var message = 'Salut Franck'; 
+        expect(message).toBe('Salut Franck');
     });
 });
