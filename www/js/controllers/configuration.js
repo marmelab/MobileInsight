@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('controllers')
-    .controller('ConfigurationCtrl', 
-        ["$scope", "localstorage", "$http", "insight", "projects", "userconfig", function ($scope, localstorage, $http, insight, projects, userconfig) {
+    .controller('ConfigurationCtrl', function ($scope, localstorage, $http, insight, projects, userconfig) {
 
             $scope.insightParams = false;
             $scope.userError = false;
@@ -73,4 +72,4 @@ angular.module('controllers')
             }; 
 
             updateInsightParams();
-    }]);
+    });
