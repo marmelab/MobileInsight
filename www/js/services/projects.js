@@ -10,7 +10,16 @@ angular.module('services')
         }
 
         Restangular.setBaseUrl(getInsightBaseUrl());
-        Restangular.setResponseInterceptor(
+        Restangular.setErrorInterceptor(
+            function(response) {
+                if (response.status == 401 || response.status == 400 ) {
+                    console.log("Login required... ");
+                } else if (response.status == 404) {
+                    console.log("Resource not found...");
+                }
+                return true; //MUST BE TRUE, else couldn't catch error in Restangular promise
+        });
+        Restangular.addResponseInterceptor(
           function(data, operation, what) {
             if (operation == 'getList') {
                 return x2js.xml_str2json(data).projects.project;
@@ -32,7 +41,9 @@ angular.module('services')
                     projectsList.projects.push(projectparser.parseListProject(project));
                 })
                 deferred.resolve(projectsList);
-            }, deferred.reject);
+            }, function(error){
+                deferred.reject(error);
+            });
 
             return deferred.promise;
         };
@@ -41,7 +52,9 @@ angular.module('services')
             var deferred = $q.defer();
             Restangular.one('projects', projectId).get().then(function(project){
                 deferred.resolve(projectparser.parseSingleProject(project));
-            }, deferred.reject);
+            }, function(error){
+                deferred.reject(error);
+            });
 
             return deferred.promise;
         };

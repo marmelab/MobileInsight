@@ -33,7 +33,8 @@ angular.module('insightMobile', [
       url: "/projects",
       views: {
         'menuContent' :{
-          templateUrl: "templates/projects.html"
+          templateUrl: "templates/projects.html",
+          controller: 'ProjectsCtrl'
         }
       }
     })
@@ -43,6 +44,15 @@ angular.module('insightMobile', [
         'menuContent' :{
           templateUrl: "templates/project.html",
           controller: 'ProjectCtrl'
+        }
+      }
+    })
+    .state('app.error', {
+      url: "/error",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/error.html",
+          controller: 'ErrorCtrl'
         }
       }
     });
