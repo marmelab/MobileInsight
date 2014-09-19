@@ -59,16 +59,9 @@ angular.module('services')
             return deferred.promise;
         };
 
-        var checkUserParams = function (userdatas) {
-            var testUrl = 'https://' + userdatas.userid + ':' + userdatas.usertoken + '@' + insight.uri ;
-            Restangular.setBaseUrl(testUrl);
-            return Restangular.all('projects').getList();
-        };
-
         return {
           getList: getList,
-          getOne: getOne,
-          checkUserParams: checkUserParams
+          getOne: getOne
         };
 
   });

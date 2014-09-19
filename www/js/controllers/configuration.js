@@ -12,40 +12,15 @@ angular.module('controllers')
             };
 
             $scope.saveUserParams = function() {
-
-                // userconfig.test($scope.userdatas).
-                // success(function() {
-                //     console.log('OUI');
-                //     $scope.userError = false;
-                //     clearUserDatas();
-                // }).
-                // error(function() {
-                //     console.log('NON');
-                //     $scope.userError = true;
-                // });
-                              
-                // projects.checkUserParams($scope.userdatas).then(function(projects){
-                //         setInsightParams($scope.userdatas);
-                //         updateInsightParams();
-                //         clearUserDatas();
-                //         $scope.userError = false;
-                // }, function(err) {
-                //     clearUserDatas();
-                //     $scope.userError = true;
-                // });
-
-                var testUrl = 'https://' + $scope.userdatas.userid + ':' + $scope.userdatas.usertoken + '@' + insight.uri + 'projects';
-                $http.get(testUrl).
-                    success(function() {
-                        setInsightParams($scope.userdatas);
-                        updateInsightParams();
-                        clearUserDatas();
-                        $scope.userError = false;
-                    }).
-                    error(function() {
-                        clearUserDatas();
-                        $scope.userError = true;
-                    });
+                userconfig.test($scope.userdatas).then(function() {
+                    setInsightParams($scope.userdatas);
+                    updateInsightParams();
+                    clearUserDatas();
+                    $scope.userError = false;
+                }, function(error) {
+                    clearUserDatas();
+                    $scope.userError = true;
+                });
             };
 
             $scope.clearInsightParams = function () {
