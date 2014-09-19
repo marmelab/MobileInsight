@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('services')
-  .service('projects', function projects(insight, projectparser, x2js, Restangular, $q) {
+  .service('projects', function (insight, projectparser, x2js, Restangular, $q) {
     
         var getInsightBaseUrl = function () {
             var userConf = 'https://' + insight.id + ':' + insight.token;

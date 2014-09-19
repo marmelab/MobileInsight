@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('services')
-  .service('userconfig', function userconfig(insight, $http) {
+  .service('userconfig', function (insight, $http) {
     
     var test = function(userdatas) {
         var testUrl = 'https://' + userdatas.userid + ':' + userdatas.usertoken + '@' + insight.uri + 'projects';

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('services')
-  .service('localstorage', function localstorage($window) {
+  .service('localstorage', function ($window) {
     
     return {
         set: function(key, value) {
