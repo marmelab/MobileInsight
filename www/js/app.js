@@ -47,6 +47,24 @@ angular.module('insightMobile', [
         }
       }
     })
+    .state('app.projectViolations', {
+      url: "/projects/:projectId/violations/:violationType",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/projectViolations.html",
+          controller: 'ProjectViolationCtrl'
+        }
+      }
+    })
+    .state('app.violation', {
+      url: "/projects/:projectId/violations/:violationType/:violationId",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/violation.html",
+          controller: 'ViolationCtrl'
+        }
+      }
+    })
     .state('app.error', {
       url: "/error",
       views: {

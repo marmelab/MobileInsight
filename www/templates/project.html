@@ -1,18 +1,40 @@
 <ion-view title="SensioLabs Insight">
   <div class="bar bar-subheader">
-    <h2 class="title">{{project.name}}</h2>
+    <h1 class="title">{{project.name}}</h1>
   </div>
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
 
-  <ion-content class="has-subheader has-footer">
-    <ion-list>
-      <ion-item>
-        <img src="img/medal-{{ project.last_analysis.grade}}.png">
-        <p>{{ project.last_analysis.nb_violations}} violations, including {{ project.last_analysis.nb_violations_new }} new</p>
-      </ion-item>
-    </ion-list>
+  <ion-content class="has-subheader has-footer" >
+
+<div class="row">
+  <div class="col"><img src="img/medal-{{ project.last_analysis.grade}}.png"></div>
+  <div class="col col-75">
+    <p>The latest analysis ({{ project.last_analysis.end_at}}) contained <span class="badge badge-energized"> {{ project.last_analysis.nb_violations}} violations</span>, including :</p>
+</div>
+</div>
+<div class="row">
+  <div class="col"><span class="badge badge-assertive">{{ project.last_analysis.nb_violations_new}} new</span> </div>
+  <div class="col"><span class="badge badge-positive">{{ project.last_analysis.nb_violations_fixed}} fixed</span> </div>
+  <div class="col"><span class="badge badge-royal">{{ project.last_analysis.nb_violations_existing}} existing</span> </div>
+</div>
+
+<div class="list">
+  <a ng-if="project.last_analysis.nb_violations_by_severity.critical" class="item item-icon-right assertive" ui-sref="app.projectViolations({ projectId: project.id, violationType: 'critical' })">
+    {{ project.last_analysis.nb_violations_by_severity.critical }} critical  violations<i class="icon ion-ios7-arrow-right"></i>
+  </a>
+  <a ng-if="project.last_analysis.nb_violations_by_severity.major" class="item item-icon-right energized" ui-sref="app.projectViolations({ projectId: project.id, violationType: 'major' })">
+    {{ project.last_analysis.nb_violations_by_severity.major }} major violations<i class="icon ion-ios7-arrow-right"></i>
+  </a>
+  <a ng-if="project.last_analysis.nb_violations_by_severity.minor" class="item item-icon-right calm" ui-sref="app.projectViolations({ projectId: project.id, violationType: 'minor' })">
+    {{ project.last_analysis.nb_violations_by_severity.minor }} minor violations<i class="icon ion-ios7-arrow-right"></i>
+  </a>
+  <a ng-if="project.last_analysis.nb_violations_by_severity.info" class="item item-icon-right dark" ui-sref="app.projectViolations({ projectId: project.id, violationType: 'info' })">
+    {{ project.last_analysis.nb_violations_by_severity.info }} info violations<i class="icon ion-ios7-arrow-right"></i>
+  </a>
+</div>
+
   </ion-content>
 
 <div class="bar bar-footer bar-stable">

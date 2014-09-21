@@ -14,12 +14,33 @@ angular.module('services')
             var project = parseListProject(projectFromXml);
             project.last_analysis.violations = [];
             if (projectFromXml["last-analysis"]["violations"] != undefined) {
-                projectFromXml["last-analysis"]["violations"]["violation"].forEach(function(violation){
-                        project.last_analysis.violations.push(parseViolation(violation))
+                projectFromXml["last-analysis"]["violations"]["violation"].forEach(function(violation, index){
+                        project.last_analysis.violations.push(parseViolation(violation, index))
                 })
             }
-            
+            project.last_analysis.nb_violations_by_severity = countViolationsByType('severity', project.last_analysis.violations);
+            project.last_analysis.nb_violations_by_category = countViolationsByType('category', project.last_analysis.violations);
+            console.log(project);
             return project;
+        };
+
+        var countViolationsByType = function (type, violations) {
+          var violationsByType = {};
+          if (violations.length < 1) {
+            return violationsByType;
+          }
+          violations.forEach(function(violation){
+            if (type == 'severity') {
+              var typename = violation.severity
+            } else {
+              var typename = violation.category
+            }
+            if (violationsByType[typename] == undefined) {
+              violationsByType[typename] = 0;
+            }
+            violationsByType[typename] += 1;
+          });
+          return violationsByType;
         };
 
         var parseProject = function(projectFromXml) {
@@ -50,8 +71,9 @@ angular.module('services')
             return analysis;
         }
 
-        var parseViolation = function(violationFromXml) {
+        var parseViolation = function(violationFromXml, indexForId) {
             var violation = {
+                internal_id: indexForId,
                 category: violationFromXml["_category"],
                 severity: violationFromXml["_severity"],
                 context: violationFromXml["context"],
