@@ -29,6 +29,8 @@ angular.module('services')
                     }
                     return x2js.xml_str2json(data);
                 });
+                //TODO set a better cache policy
+                RestangularConfigurer.setDefaultHttpFields({cache: true})
                 RestangularConfigurer.setBaseUrl(getInsightBaseUrl());
         });
 

@@ -1,12 +1,25 @@
-<ion-view title="Your {{ projectList.nbProjects }} projects">
+<ion-view title="SensioLabs Insight">
+  <div class="bar bar-subheader">
+    <h2 class="title">Your {{ projectList.nbProjects }} projects</h2>
+  </div>
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
-  <ion-content class="has-header">
+  
+
+  <ion-content class="has-subheader has-footer">
     <ion-list>
-      <ion-item ng-repeat="project in projectList.projects" href="#/app/projects/{{project.id}}">
-        {{project.name}}
+      <ion-item ng-repeat="project in projectList.projects" href="#/app/projects/{{project.id}}" class="item item-avatar item-icon-right">
+        <img src="img/medal-{{ project.last_analysis.grade}}.png">
+        <h2>{{project.name}}</h2>
+        <p>{{ project.last_analysis.nb_violations}} violations, including {{ project.last_analysis.nb_violations_new }} new</p>
+        <i class="icon ion-chevron-right"></i>
       </ion-item>
     </ion-list>
   </ion-content>
+
+<div class="bar bar-footer bar-stable">
+  <div class="title">@Marmelab</div>
+</div>
+
 </ion-view>

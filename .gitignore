@@ -9,6 +9,8 @@ www/js/config/insight.js
 
 www/lib/*
 
+proxinsight
+
 app/bower_components/
 .sass-cache/
 .tmp/
