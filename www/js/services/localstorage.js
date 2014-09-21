@@ -5,16 +5,16 @@ angular.module('services')
     
     return {
         set: function(key, value) {
-            $window.localStorage[key] = value;
+            $window.localStorage.setItem(key, value);
         },
         get: function(key, defaultValue) {
-            return $window.localStorage[key] || defaultValue;
+            return $window.localStorage.getItem(key) || defaultValue;
         },
         setObject: function(key, value) {
-            $window.localStorage[key] = JSON.stringify(value);
+            $window.localStorage.setItem(key, JSON.stringify(value));
         },
         getObject: function(key) {
-            return JSON.parse($window.localStorage[key] || '{}');
+            return JSON.parse($window.localStorage.getItem(key)  || '{}');
         },
         removeObject: function(key) {
             return $window.localStorage.removeItem(key);

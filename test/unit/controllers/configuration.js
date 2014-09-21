@@ -1,13 +1,10 @@
-describe('MessageCtrl', function() { 
+describe('ConfigurationCtrl', function() { 
     var $scope;
 
     beforeEach(module('controllers'));
 
     beforeEach(inject(function($rootScope, $controller) { 
         $scope = $rootScope.$new(); 
-        $controller('ConfigurationCtrl', {
-            $scope: $scope
-        }); 
     }));
 
     it('should get the correct message', function() { 
