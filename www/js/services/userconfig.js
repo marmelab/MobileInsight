@@ -5,7 +5,7 @@ angular.module('services')
 
         var test = function(userdatas) {
             var deferred = $q.defer();
-            var testUrl = 'https://' + userdatas.userid + ':' + userdatas.usertoken + '@' + insight.uri ;
+            var testUrl = insight.method + '://' + userdatas.userid + ':' + userdatas.usertoken + '@' + insight.uri + '/api';
             var testangular = Restangular.withConfig(function(RestangularConfigurer) {
                 RestangularConfigurer.setBaseUrl(testUrl);
                 RestangularConfigurer.setErrorInterceptor(
