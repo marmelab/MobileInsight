@@ -6,6 +6,7 @@
     <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
 
+
   <ion-content class="has-subheader has-footer" >
 
 <div class="row">
@@ -18,25 +19,33 @@
     </p>
 </div>
 </div>
+
+
+<div ui-view name="projectView"  animation="slide-left-right">
+
 <div class="row">
   <div class="col col"><span class="badge badge-energized"> {{ project.last_analysis.nb_violations}} violations</span></div>
   <div class="col col"><span class="badge badge-large badge-dark icon-left ion-social-usd">cost : {{ cost }}</span></div>
 </div>
-
+  
 <div class="list">
-  <a ng-if="project.last_analysis.nb_violations_by_severity.critical" class="item item-icon-right assertive" ui-sref="app.projectViolations({ projectId: project.id, violationType: 'critical' })">
-    {{ project.last_analysis.nb_violations_by_severity.critical }} critical  violations<i class="icon ion-ios7-arrow-right"></i>
-  </a>
-  <a ng-if="project.last_analysis.nb_violations_by_severity.major" class="item item-icon-right energized" ui-sref="app.projectViolations({ projectId: project.id, violationType: 'major' })">
-    {{ project.last_analysis.nb_violations_by_severity.major }} major violations<i class="icon ion-ios7-arrow-right"></i>
-  </a>
-  <a ng-if="project.last_analysis.nb_violations_by_severity.minor" class="item item-icon-right calm" ui-sref="app.projectViolations({ projectId: project.id, violationType: 'minor' })">
-    {{ project.last_analysis.nb_violations_by_severity.minor }} minor violations<i class="icon ion-ios7-arrow-right"></i>
-  </a>
-  <a ng-if="project.last_analysis.nb_violations_by_severity.info" class="item item-icon-right dark" ui-sref="app.projectViolations({ projectId: project.id, violationType: 'info' })">
-    {{ project.last_analysis.nb_violations_by_severity.info }} info violations<i class="icon ion-ios7-arrow-right"></i>
-  </a>
+    <a ng-if="project.last_analysis.nb_violations_by_severity.critical" class="item item-icon-right assertive" ui-sref="app.project.violations({ projectId: project.id, violationType: 'critical' })">
+      {{ project.last_analysis.nb_violations_by_severity.critical }} critical  violations<i class="icon ion-ios7-arrow-right"></i>
+    </a>
+    <a ng-if="project.last_analysis.nb_violations_by_severity.major" class="item item-icon-right energized" ui-sref="app.project.violations({ projectId: project.id, violationType: 'major' })">
+      {{ project.last_analysis.nb_violations_by_severity.major }} major violations<i class="icon ion-ios7-arrow-right"></i>
+    </a>
+    <a ng-if="project.last_analysis.nb_violations_by_severity.minor" class="item item-icon-right calm" ui-sref="app.project.violations({ projectId: project.id, violationType: 'minor' })">
+      {{ project.last_analysis.nb_violations_by_severity.minor }} minor violations<i class="icon ion-ios7-arrow-right"></i>
+    </a>
+    <a ng-if="project.last_analysis.nb_violations_by_severity.info" class="item item-icon-right dark" ui-sref="app.project.violations({ projectId: project.id, violationType: 'info' })">
+      {{ project.last_analysis.nb_violations_by_severity.info }} info violations<i class="icon ion-ios7-arrow-right"></i>
+    </a>
 </div>
+
+</div>
+
+
 
   </ion-content>
 
