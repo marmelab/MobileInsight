@@ -1,0 +1,1376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <link href="https://insight.sensiolabs.com/api/projects/0dd085ca-bd58-4d88-adc4-58a06566a173" rel="self" type="application/vnd.com.sensiolabs.insight+xml"/>
+  <link href="https://insight.sensiolabs.com/api/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses" rel="analyses" type="application/vnd.insight.analyses"/>
+  <link href="https://insight.sensiolabs.com/api/projects" rel="parent" type="application/vnd.com.sensiolabs.insight+xml"/>
+  <last-analysis>
+    <link href="https://insight.sensiolabs.com/api/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64" rel="self" type="application/vnd.com.sensiolabs.insight+xml"/>
+    <link href="https://insight.sensiolabs.com/api/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64/status" rel="status" type="application/vnd.com.sensiolabs.insight+xml"/>
+    <link href="https://insight.sensiolabs.com/api/projects/0dd085ca-bd58-4d88-adc4-58a06566a173" rel="project" type="application/vnd.com.sensiolabs.insight+xml"/>
+    <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64" rel="self" type="text/html"/>
+    <violations>
+      <violation severity="critical" category="security">
+        <line>0</line>
+        <title>Projects must not depend on dependencies with known security issues</title>
+        <message><![CDATA[The checker detected 1 security issues in package symfony/symfony installed in version 2.4.4.0 1) Code injection in the way Symfony implements translation caching in FrameworkBundle.]]></message>
+        <context/>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471445" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="deadcode">
+        <line>11</line>
+        <resource><![CDATA[web/app.php]]></resource>
+        <title>Commented code should not be commited</title>
+        <message><![CDATA[Commented out code reduces readability and lowers the code confidence for other developers. If it's common usage for debug, it should not be committed. Using a version control system, such code can be safely removed.]]></message>
+        <context start-line="6" end-line="16"><![CDATA[$loader = require_once __DIR__.'/../app/bootstrap.php.cache';
+
+// Use APC for autoloading to improve performance.
+// Change 'sf2' to a unique prefix in order to prevent cache key conflicts
+// with other applications also using APC.
+/*
+$apcLoader = new ApcClassLoader('sf2', $loader);
+$loader->unregister();
+$apcLoader->register(true);
+*/
+]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471390" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="deadcode">
+        <line>18</line>
+        <resource><![CDATA[web/app.php]]></resource>
+        <title>Commented code should not be commited</title>
+        <message><![CDATA[Commented out code reduces readability and lowers the code confidence for other developers. If it's common usage for debug, it should not be committed. Using a version control system, such code can be safely removed.]]></message>
+        <context start-line="13" end-line="23"><![CDATA[$loader->unregister();
+$apcLoader->register(true);
+*/
+
+require_once __DIR__.'/../app/AppKernel.php';
+//require_once __DIR__.'/../app/AppCache.php';
+
+$kernel = new AppKernel('prod', false);
+$kernel->loadClassCache();
+//$kernel = new AppCache($kernel);
+]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471430" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="deadcode">
+        <line>22</line>
+        <resource><![CDATA[web/app.php]]></resource>
+        <title>Commented code should not be commited</title>
+        <message><![CDATA[Commented out code reduces readability and lowers the code confidence for other developers. If it's common usage for debug, it should not be committed. Using a version control system, such code can be safely removed.]]></message>
+        <context start-line="17" end-line="27"><![CDATA[require_once __DIR__.'/../app/AppKernel.php';
+//require_once __DIR__.'/../app/AppCache.php';
+
+$kernel = new AppKernel('prod', false);
+$kernel->loadClassCache();
+//$kernel = new AppCache($kernel);
+
+// When using the HttpCache, you need to call the method in your front controller instead of relying on the configuration parameter
+//Request::enableHttpMethodParameterOverride();
+$request = Request::createFromGlobals();
+$response = $kernel->handle($request);]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471426" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="deadcode">
+        <line>25</line>
+        <resource><![CDATA[web/app.php]]></resource>
+        <title>Commented code should not be commited</title>
+        <message><![CDATA[Commented out code reduces readability and lowers the code confidence for other developers. If it's common usage for debug, it should not be committed. Using a version control system, such code can be safely removed.]]></message>
+        <context start-line="20" end-line="30"><![CDATA[$kernel = new AppKernel('prod', false);
+$kernel->loadClassCache();
+//$kernel = new AppCache($kernel);
+
+// When using the HttpCache, you need to call the method in your front controller instead of relying on the configuration parameter
+//Request::enableHttpMethodParameterOverride();
+$request = Request::createFromGlobals();
+$response = $kernel->handle($request);
+$response->send();
+$kernel->terminate($request, $response);
+]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471396" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>71</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 38 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:71 and app/cache/prod/appProdProjectContainer.php:44.]]></message>
+        <context start-line="66" end-line="76"><![CDATA[            'doctrine_mongodb.odm.metadata.chain' => 'getDoctrineMongodb_Odm_Metadata_ChainService',
+            'doctrine_mongodb.odm.metadata.xml' => 'getDoctrineMongodb_Odm_Metadata_XmlService',
+            'doctrine_mongodb.odm.metadata.yml' => 'getDoctrineMongodb_Odm_Metadata_YmlService',
+            'doctrine_odm.mongodb.validator.unique' => 'getDoctrineOdm_Mongodb_Validator_UniqueService',
+            'doctrine_odm.mongodb.validator_initializer' => 'getDoctrineOdm_Mongodb_ValidatorInitializerService',
+            'file_locator' => 'getFileLocatorService',
+            'filesystem' => 'getFilesystemService',
+            'form.csrf_provider' => 'getForm_CsrfProviderService',
+            'form.factory' => 'getForm_FactoryService',
+            'form.registry' => 'getForm_RegistryService',
+            'form.resolved_type_factory' => 'getForm_ResolvedTypeFactoryService',]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471391" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>184</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 60 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:184 and app/cache/prod/appProdProjectContainer.php:148.]]></message>
+        <context start-line="179" end-line="189"><![CDATA[            'stof_doctrine_extensions.uploadable.manager' => 'getStofDoctrineExtensions_Uploadable_ManagerService',
+            'streamed_response_listener' => 'getStreamedResponseListenerService',
+            'swiftmailer.email_sender.listener' => 'getSwiftmailer_EmailSender_ListenerService',
+            'swiftmailer.mailer.default' => 'getSwiftmailer_Mailer_DefaultService',
+            'swiftmailer.mailer.default.plugin.messagelogger' => 'getSwiftmailer_Mailer_Default_Plugin_MessageloggerService',
+            'swiftmailer.mailer.default.spool' => 'getSwiftmailer_Mailer_Default_SpoolService',
+            'swiftmailer.mailer.default.transport' => 'getSwiftmailer_Mailer_Default_TransportService',
+            'swiftmailer.mailer.default.transport.eventdispatcher' => 'getSwiftmailer_Mailer_Default_Transport_EventdispatcherService',
+            'swiftmailer.mailer.default.transport.real' => 'getSwiftmailer_Mailer_Default_Transport_RealService',
+            'templating' => 'getTemplatingService',
+            'templating.asset.package_factory' => 'getTemplating_Asset_PackageFactoryService',]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471427" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>360</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 12 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:360 and app/cache/prod/appProdProjectContainer.php:240.]]></message>
+        <context start-line="355" end-line="365"><![CDATA[     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer A Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer instance.
+     */
+    protected function getCacheClearerService()
+    {
+        return $this->services['cache_clearer'] = new \Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer(array());
+    }
+
+    /**]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471406" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>615</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 53 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:615 and app/cache/prod/appProdProjectContainer.php:288.]]></message>
+        <context start-line="610" end-line="620"><![CDATA[        $instance->setDefaultCommitOptions(array());
+        $instance->setRetryConnect(0);
+        $instance->setRetryQuery(0);
+        $instance->setLoggerCallable(array(0 => new \Doctrine\Bundle\MongoDBBundle\Logger\AggregateLogger(array(0 => $e, 1 => $this->get('doctrine_mongodb.odm.data_collector.pretty'))), 1 => 'logQuery'));
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'doctrine_mongodb.odm.default_connection' service.
+     *]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471447" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>773</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 19 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:773 and app/cache/prod/appProdProjectContainer.php:362.]]></message>
+        <context start-line="768" end-line="778"><![CDATA[     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Symfony\Component\HttpKernel\Config\FileLocator A Symfony\Component\HttpKernel\Config\FileLocator instance.
+     */
+    protected function getFileLocatorService()
+    {
+        return $this->services['file_locator'] = new \Symfony\Component\HttpKernel\Config\FileLocator($this->get('kernel'), '/home/foobar/code/app/Resources');
+    }
+
+    /**]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471436" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>851</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 129 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:851 and app/cache/prod/appProdProjectContainer.php:386.]]></message>
+        <context start-line="846" end-line="856"><![CDATA[     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Symfony\Component\Form\Extension\Core\Type\BirthdayType A Symfony\Component\Form\Extension\Core\Type\BirthdayType instance.
+     */
+    protected function getForm_Type_BirthdayService()
+    {
+        return $this->services['form.type.birthday'] = new \Symfony\Component\Form\Extension\Core\Type\BirthdayType();
+    }
+
+    /**]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471425" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>1280</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 27 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:1280 and app/cache/prod/appProdProjectContainer.php:514.]]></message>
+        <context start-line="1275" end-line="1285"><![CDATA[     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Symfony\Component\Form\Extension\HttpFoundation\Type\FormTypeHttpFoundationExtension A Symfony\Component\Form\Extension\HttpFoundation\Type\FormTypeHttpFoundationExtension instance.
+     */
+    protected function getForm_TypeExtension_Form_HttpFoundationService()
+    {
+        return $this->services['form.type_extension.form.http_foundation'] = new \Symfony\Component\Form\Extension\HttpFoundation\Type\FormTypeHttpFoundationExtension();
+    }
+
+    /**]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471435" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>1360</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 25 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:1360 and app/cache/prod/appProdProjectContainer.php:540.]]></message>
+        <context start-line="1355" end-line="1365"><![CDATA[     *
+     * @return Symfony\Component\HttpKernel\Fragment\FragmentHandler A Symfony\Component\HttpKernel\Fragment\FragmentHandler instance.
+     */
+    protected function getFragment_HandlerService()
+    {
+        $this->services['fragment.handler'] = $instance = new \Symfony\Component\HttpKernel\Fragment\FragmentHandler(array(), true, $this->get('request_stack'));
+
+        $instance->addRenderer($this->get('fragment.renderer.inline'));
+        $instance->addRenderer($this->get('fragment.renderer.hinclude'));
+        $instance->addRenderer($this->get('fragment.renderer.esi'));
+]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471433" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>1758</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 22 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:1758 and app/cache/prod/appProdProjectContainer.php:634.]]></message>
+        <context start-line="1753" end-line="1763"><![CDATA[     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Symfony\Component\PropertyAccess\PropertyAccessor A Symfony\Component\PropertyAccess\PropertyAccessor instance.
+     */
+    protected function getPropertyAccessorService()
+    {
+        return $this->services['property_accessor'] = new \Symfony\Component\PropertyAccess\PropertyAccessor();
+    }
+
+    /**]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471401" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>1817</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 16 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:1817 and app/cache/prod/appProdProjectContainer.php:655.]]></message>
+        <context start-line="1812" end-line="1822"><![CDATA[     *
+     * @return Symfony\Bundle\FrameworkBundle\Routing\Router A Symfony\Bundle\FrameworkBundle\Routing\Router instance.
+     */
+    protected function getRouterService()
+    {
+        return $this->services['router'] = new \Symfony\Bundle\FrameworkBundle\Routing\Router($this, '/home/foobar/code/app/cache/dev/assetic/routing.yml', array('cache_dir' => '/home/foobar/code/app/cache/dev', 'debug' => true, 'generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper', 'generator_cache_class' => 'appDevUrlGenerator', 'matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper', 'matcher_cache_class' => 'appDevUrlMatcher', 'strict_requirements' => true), $this->get('router.request_context', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('monolog.logger.router', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+    }
+
+    /**
+     * Gets the 'router_listener' service.
+     *]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471441" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>1853</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 20 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:1853 and app/cache/prod/appProdProjectContainer.php:670.]]></message>
+        <context start-line="1848" end-line="1858"><![CDATA[        $d = new \Symfony\Component\Config\Loader\LoaderResolver();
+        $d->addLoader(new \Symfony\Component\Routing\Loader\XmlFileLoader($a));
+        $d->addLoader(new \Symfony\Component\Routing\Loader\YamlFileLoader($a));
+        $d->addLoader(new \Symfony\Component\Routing\Loader\PhpFileLoader($a));
+        $d->addLoader(new \Symfony\Bundle\AsseticBundle\Routing\AsseticLoader($this->get('assetic.asset_manager')));
+        $d->addLoader(new \Symfony\Component\Routing\Loader\AnnotationDirectoryLoader($a, $c));
+        $d->addLoader(new \Symfony\Component\Routing\Loader\AnnotationFileLoader($a, $c));
+        $d->addLoader($c);
+
+        return $this->services['routing.loader'] = new \Symfony\Bundle\FrameworkBundle\Routing\DelegatingLoader($this->get('controller_name_converter'), $this->get('monolog.logger.router', ContainerInterface::NULL_ON_INVALID_REFERENCE), $d);
+    }]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471394" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>1950</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 19 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:1950 and app/cache/prod/appProdProjectContainer.php:703.]]></message>
+        <context start-line="1945" end-line="1955"><![CDATA[     */
+    protected function getSecurity_Firewall_Map_Context_SecuredAreaService()
+    {
+        $a = $this->get('monolog.logger.security', ContainerInterface::NULL_ON_INVALID_REFERENCE);
+        $b = $this->get('security.context');
+        $c = $this->get('debug.event_dispatcher', ContainerInterface::NULL_ON_INVALID_REFERENCE);
+        $d = $this->get('router', ContainerInterface::NULL_ON_INVALID_REFERENCE);
+        $e = $this->get('http_kernel');
+        $f = $this->get('security.authentication.manager');
+
+        $g = new \Symfony\Component\Security\Http\AccessMap();]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471454" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>2028</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 50 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:2028 and app/cache/prod/appProdProjectContainer.php:727.]]></message>
+        <context start-line="2023" end-line="2033"><![CDATA[     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Sensio\Bundle\FrameworkExtraBundle\EventListener\HttpCacheListener A Sensio\Bundle\FrameworkExtraBundle\EventListener\HttpCacheListener instance.
+     */
+    protected function getSensioFrameworkExtra_Cache_ListenerService()
+    {
+        return $this->services['sensio_framework_extra.cache.listener'] = new \Sensio\Bundle\FrameworkExtraBundle\EventListener\HttpCacheListener();
+    }
+
+    /**]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471444" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>2178</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 272 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:2178 and app/insight_cache/appProdProjectContainer.php:776.]]></message>
+        <context start-line="2173" end-line="2183"><![CDATA[     *
+     * @return Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage A Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage instance.
+     */
+    protected function getSession_Storage_FilesystemService()
+    {
+        return $this->services['session.storage.filesystem'] = new \Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage('/home/foobar/code/app/cache/dev/sessions', 'MOCKSESSID', $this->get('session.storage.metadata_bag'));
+    }
+
+    /**
+     * Gets the 'session.storage.native' service.
+     *]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471431" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>2178</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 34 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:2178 and app/cache/prod/appProdProjectContainer.php:776.]]></message>
+        <context start-line="2173" end-line="2183"><![CDATA[     *
+     * @return Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage A Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage instance.
+     */
+    protected function getSession_Storage_FilesystemService()
+    {
+        return $this->services['session.storage.filesystem'] = new \Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage('/home/foobar/code/app/cache/dev/sessions', 'MOCKSESSID', $this->get('session.storage.metadata_bag'));
+    }
+
+    /**
+     * Gets the 'session.storage.native' service.
+     *]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471438" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>2327</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 17 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:2327 and app/cache/prod/appProdProjectContainer.php:817.]]></message>
+        <context start-line="2322" end-line="2332"><![CDATA[     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Swift_Transport_EsmtpTransport A Swift_Transport_EsmtpTransport instance.
+     */
+    protected function getSwiftmailer_Mailer_Default_Transport_RealService()
+    {
+        $a = new \Swift_Transport_Esmtp_AuthHandler(array(0 => new \Swift_Transport_Esmtp_Auth_CramMd5Authenticator(), 1 => new \Swift_Transport_Esmtp_Auth_LoginAuthenticator(), 2 => new \Swift_Transport_Esmtp_Auth_PlainAuthenticator()));
+        $a->setUsername(NULL);
+        $a->setPassword(NULL);
+        $a->setAuthMode(NULL);]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471428" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>2357</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 31 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:2357 and app/cache/prod/appProdProjectContainer.php:834.]]></message>
+        <context start-line="2352" end-line="2362"><![CDATA[     */
+    protected function getTemplatingService()
+    {
+        $this->services['templating'] = $instance = new \Symfony\Bundle\TwigBundle\Debug\TimedTwigEngine($this->get('twig'), $this->get('templating.name_parser'), $this->get('templating.locator'), $this->get('debug.stopwatch'));
+
+        $instance->setDefaultEscapingStrategy(array(0 => $instance, 1 => 'guessDefaultEscapingStrategy'));
+
+        return $instance;
+    }
+
+    /**]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471403" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>2456</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 31 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:2456 and app/cache/prod/appProdProjectContainer.php:869.]]></message>
+        <context start-line="2451" end-line="2461"><![CDATA[     *
+     * @return Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper A Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper instance.
+     */
+    protected function getTemplating_Helper_FormService()
+    {
+        return $this->services['templating.helper.form'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper(new \Symfony\Component\Form\FormRenderer(new \Symfony\Component\Form\Extension\Templating\TemplatingRendererEngine($this->get('debug.templating.engine.php'), array(0 => 'FrameworkBundle:Form')), $this->get('form.csrf_provider', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
+    }
+
+    /**
+     * Gets the 'templating.helper.logout_url' service.
+     *]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471442" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>2562</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 147 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:2562 and app/cache/prod/appProdProjectContainer.php:901.]]></message>
+        <context start-line="2557" end-line="2567"><![CDATA[     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Symfony\Bundle\FrameworkBundle\Templating\Helper\TranslatorHelper A Symfony\Bundle\FrameworkBundle\Templating\Helper\TranslatorHelper instance.
+     */
+    protected function getTemplating_Helper_TranslatorService()
+    {
+        return $this->services['templating.helper.translator'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\TranslatorHelper($this->get('translator'));
+    }
+
+    /**]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471404" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>2989</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 10 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:2989 and app/cache/prod/appProdProjectContainer.php:1051.]]></message>
+        <context start-line="2984" end-line="2994"><![CDATA[     *
+     * @return Twig_Environment A Twig_Environment instance.
+     */
+    protected function getTwigService()
+    {
+        $this->services['twig'] = $instance = new \Twig_Environment($this->get('twig.loader'), array('debug' => true, 'strict_variables' => true, 'exception_controller' => 'twig.controller.exception:showAction', 'autoescape_service' => NULL, 'autoescape_service_method' => NULL, 'cache' => '/home/foobar/code/app/cache/dev/twig', 'charset' => 'UTF-8', 'paths' => array()));
+
+        $instance->addExtension(new \Symfony\Bundle\SecurityBundle\Twig\Extension\LogoutUrlExtension($this->get('templating.helper.logout_url')));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\SecurityExtension($this->get('security.context', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\TranslationExtension($this->get('translator')));
+        $instance->addExtension(new \Symfony\Bundle\TwigBundle\Extension\AssetsExtension($this));]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471395" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>2989</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 104 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:2989 and app/insight_cache/appProdProjectContainer.php:1051.]]></message>
+        <context start-line="2984" end-line="2994"><![CDATA[     *
+     * @return Twig_Environment A Twig_Environment instance.
+     */
+    protected function getTwigService()
+    {
+        $this->services['twig'] = $instance = new \Twig_Environment($this->get('twig.loader'), array('debug' => true, 'strict_variables' => true, 'exception_controller' => 'twig.controller.exception:showAction', 'autoescape_service' => NULL, 'autoescape_service_method' => NULL, 'cache' => '/home/foobar/code/app/cache/dev/twig', 'charset' => 'UTF-8', 'paths' => array()));
+
+        $instance->addExtension(new \Symfony\Bundle\SecurityBundle\Twig\Extension\LogoutUrlExtension($this->get('templating.helper.logout_url')));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\SecurityExtension($this->get('security.context', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\TranslationExtension($this->get('translator')));
+        $instance->addExtension(new \Symfony\Bundle\TwigBundle\Extension\AssetsExtension($this));]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471385" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3031</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 14 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:3031 and app/cache/prod/appProdProjectContainer.php:1072.]]></message>
+        <context start-line="3026" end-line="3036"><![CDATA[     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Symfony\Component\HttpKernel\EventListener\ExceptionListener A Symfony\Component\HttpKernel\EventListener\ExceptionListener instance.
+     */
+    protected function getTwig_ExceptionListenerService()
+    {
+        return $this->services['twig.exception_listener'] = new \Symfony\Component\HttpKernel\EventListener\ExceptionListener('twig.controller.exception:showAction', $this->get('monolog.logger.request', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+    }
+
+    /**]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471422" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3056</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 21 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:3056 and app/cache/prod/appProdProjectContainer.php:1085.]]></message>
+        <context start-line="3051" end-line="3061"><![CDATA[        $instance->addPath('/home/foobar/code/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/views', 'Swiftmailer');
+        $instance->addPath('/home/foobar/code/vendor/doctrine/mongodb-odm-bundle/Doctrine/Bundle/MongoDBBundle/Resources/views', 'DoctrineMongoDB');
+        $instance->addPath('/home/foobar/code/src/Rdo/GlobalBundle/Resources/views', 'RdoGlobal');
+        $instance->addPath('/home/foobar/code/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views', 'WebProfiler');
+        $instance->addPath('/home/foobar/code/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views', 'SensioDistribution');
+        $instance->addPath('/home/foobar/code/app/Resources/views');
+        $instance->addPath('/home/foobar/code/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form');
+
+        return $instance;
+    }
+]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471408" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3137</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 48 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:3137 and app/cache/dev/appDevDebugProjectContainer.php:4070.]]></message>
+        <context start-line="3132" end-line="3142"><![CDATA[     *
+     * @return Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController A Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController instance.
+     */
+    protected function getWebProfiler_Controller_ProfilerService()
+    {
+        return $this->services['web_profiler.controller.profiler'] = new \Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController($this->get('router', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('profiler', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('twig'), array('data_collector.config' => array(0 => 'config', 1 => '@WebProfiler/Collector/config.html.twig'), 'data_collector.request' => array(0 => 'request', 1 => '@WebProfiler/Collector/request.html.twig'), 'data_collector.exception' => array(0 => 'exception', 1 => '@WebProfiler/Collector/exception.html.twig'), 'data_collector.events' => array(0 => 'events', 1 => '@WebProfiler/Collector/events.html.twig'), 'data_collector.logger' => array(0 => 'logger', 1 => '@WebProfiler/Collector/logger.html.twig'), 'data_collector.time' => array(0 => 'time', 1 => '@WebProfiler/Collector/time.html.twig'), 'data_collector.memory' => array(0 => 'memory', 1 => '@WebProfiler/Collector/memory.html.twig'), 'data_collector.router' => array(0 => 'router', 1 => '@WebProfiler/Collector/router.html.twig'), 'data_collector.form' => array(0 => 'form', 1 => '@WebProfiler/Collector/form.html.twig'), 'data_collector.security' => array(0 => 'security', 1 => '@Security/Collector/security.html.twig'), 'swiftmailer.data_collector' => array(0 => 'swiftmailer', 1 => '@Swiftmailer/Collector/swiftmailer.html.twig'), 'doctrine_mongodb.odm.data_collector.pretty' => array(0 => 'mongodb', 1 => 'DoctrineMongoDBBundle:Collector:mongodb')), 'bottom');
+    }
+
+    /**
+     * Gets the 'web_profiler.controller.router' service.
+     *]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471387" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3271</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 14 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:3271 and app/cache/prod/appProdProjectContainer.php:1113.]]></message>
+        <context start-line="3266" end-line="3276"><![CDATA[     * If you want to be able to request this service from the container directly,
+     * make it public, otherwise you might end up with broken code.
+     *
+     * @return Symfony\Component\Routing\RequestContext A Symfony\Component\Routing\RequestContext instance.
+     */
+    protected function getRouter_RequestContextService()
+    {
+        return $this->services['router.request_context'] = new \Symfony\Component\Routing\RequestContext('', 'GET', 'localhost', 'http', 80, 443);
+    }
+
+    /**]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471432" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3314</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 28 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:3314 and app/cache/prod/appProdProjectContainer.php:1127.]]></message>
+        <context start-line="3309" end-line="3319"><![CDATA[    {
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('security.user.provider.concrete.in_memory'), new \Symfony\Component\Security\Core\User\UserChecker(), 'secured_area', $this->get('security.encoder_factory'), true)), true);
+
+        $instance->setEventDispatcher($this->get('debug.event_dispatcher'));
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'security.authentication.trust_resolver' service.
+     *]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471448" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3436</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 37 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:3436 and app/cache/prod/appProdProjectContainer.php:1156.]]></message>
+        <context start-line="3431" end-line="3441"><![CDATA[     * If you want to be able to request this service from the container directly,
+     * make it public, otherwise you might end up with broken code.
+     *
+     * @return Symfony\Component\Translation\MessageSelector A Symfony\Component\Translation\MessageSelector instance.
+     */
+    protected function getTranslator_SelectorService()
+    {
+        return $this->services['translator.selector'] = new \Symfony\Component\Translation\MessageSelector();
+    }
+
+    /**]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471415" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3436</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 40 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:3436 and app/insight_cache/appProdProjectContainer.php:1156.]]></message>
+        <context start-line="3431" end-line="3441"><![CDATA[     * If you want to be able to request this service from the container directly,
+     * make it public, otherwise you might end up with broken code.
+     *
+     * @return Symfony\Component\Translation\MessageSelector A Symfony\Component\Translation\MessageSelector instance.
+     */
+    protected function getTranslator_SelectorService()
+    {
+        return $this->services['translator.selector'] = new \Symfony\Component\Translation\MessageSelector();
+    }
+
+    /**]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471399" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3533</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 60 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:3533 and app/cache/prod/appProdProjectContainer.php:1212.]]></message>
+        <context start-line="3528" end-line="3538"><![CDATA[                'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
+                'SensioGeneratorBundle' => 'Sensio\\Bundle\\GeneratorBundle\\SensioGeneratorBundle',
+            ),
+            'kernel.charset' => 'UTF-8',
+            'kernel.container_class' => 'appDevDebugProjectContainer',
+            'database_host' => 'localhost',
+            'database_port' => 27017,
+            'database_name' => 'symfony',
+            'database_user' => 'root',
+            'database_password' => 'Secr3t',
+            'mailer_transport' => 'smtp',]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471437" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3544</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 70 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:3544 and app/insight_cache/appProdProjectContainer.php:1224.]]></message>
+        <context start-line="3539" end-line="3549"><![CDATA[            'mailer_host' => '127.0.0.1',
+            'mailer_user' => NULL,
+            'mailer_password' => NULL,
+            'locale' => 'en',
+            'secret' => 'ThisTokenIsNotSoSecretChangeIt',
+            'controller_resolver.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
+            'controller_name_converter.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerNameParser',
+            'response_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\ResponseListener',
+            'streamed_response_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\StreamedResponseListener',
+            'locale_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\LocaleListener',
+            'event_dispatcher.class' => 'Symfony\\Component\\EventDispatcher\\ContainerAwareEventDispatcher',]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471424" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3621</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 41 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:3621 and app/cache/prod/appProdProjectContainer.php:1293.]]></message>
+        <context start-line="3616" end-line="3626"><![CDATA[            'session_listener.class' => 'Symfony\\Bundle\\FrameworkBundle\\EventListener\\SessionListener',
+            'session.storage.options' => array(
+
+            ),
+            'session.save_path' => '/home/foobar/code/app/cache/dev/sessions',
+            'session.metadata.update_threshold' => '0',
+            'security.secure_random.class' => 'Symfony\\Component\\Security\\Core\\Util\\SecureRandom',
+            'form.resolved_type_factory.class' => 'Symfony\\Component\\Form\\ResolvedFormTypeFactory',
+            'form.registry.class' => 'Symfony\\Component\\Form\\FormRegistry',
+            'form.factory.class' => 'Symfony\\Component\\Form\\FormFactory',
+            'form.extension.class' => 'Symfony\\Component\\Form\\Extension\\DependencyInjection\\DependencyInjectionExtension',]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471398" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3621</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 207 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:3621 and app/insight_cache/appProdProjectContainer.php:1294.]]></message>
+        <context start-line="3616" end-line="3626"><![CDATA[            'session_listener.class' => 'Symfony\\Bundle\\FrameworkBundle\\EventListener\\SessionListener',
+            'session.storage.options' => array(
+
+            ),
+            'session.save_path' => '/home/foobar/code/app/cache/dev/sessions',
+            'session.metadata.update_threshold' => '0',
+            'security.secure_random.class' => 'Symfony\\Component\\Security\\Core\\Util\\SecureRandom',
+            'form.resolved_type_factory.class' => 'Symfony\\Component\\Form\\ResolvedFormTypeFactory',
+            'form.registry.class' => 'Symfony\\Component\\Form\\FormRegistry',
+            'form.factory.class' => 'Symfony\\Component\\Form\\FormFactory',
+            'form.extension.class' => 'Symfony\\Component\\Form\\Extension\\DependencyInjection\\DependencyInjectionExtension',]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471414" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3729</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 111 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:3729 and app/cache/prod/appProdProjectContainer.php:1381.]]></message>
+        <context start-line="3724" end-line="3734"><![CDATA[            'router.request_context.host' => 'localhost',
+            'router.request_context.scheme' => 'http',
+            'router.request_context.base_url' => '',
+            'router.resource' => '/home/foobar/code/app/cache/dev/assetic/routing.yml',
+            'router.cache_class_prefix' => 'appDev',
+            'request_listener.http_port' => 80,
+            'request_listener.https_port' => 443,
+            'annotations.reader.class' => 'Doctrine\\Common\\Annotations\\AnnotationReader',
+            'annotations.cached_reader.class' => 'Doctrine\\Common\\Annotations\\CachedReader',
+            'annotations.file_cache_reader.class' => 'Doctrine\\Common\\Annotations\\FileCacheReader',
+            'security.context.class' => 'Symfony\\Component\\Security\\Core\\SecurityContext',]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471412" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3849</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 65 lines appear in app/cache/dev/appDevDebugProjectContainer.php:3849, app/cache/prod/appProdProjectContainer.php:1500 and app/insight_cache/appProdProjectContainer.php:1501.]]></message>
+        <context start-line="3844" end-line="3854"><![CDATA[                'strict_variables' => true,
+                'exception_controller' => 'twig.controller.exception:showAction',
+                'autoescape_service' => NULL,
+                'autoescape_service_method' => NULL,
+                'cache' => '/home/foobar/code/app/cache/dev/twig',
+                'charset' => 'UTF-8',
+                'paths' => array(
+
+                ),
+            ),
+            'monolog.logger.class' => 'Symfony\\Bridge\\Monolog\\Logger',]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471382" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3971</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 41 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:3971 and app/cache/prod/appProdProjectContainer.php:1611.]]></message>
+        <context start-line="3966" end-line="3976"><![CDATA[            'assetic.controller.class' => 'Symfony\\Bundle\\AsseticBundle\\Controller\\AsseticController',
+            'assetic.routing_loader.class' => 'Symfony\\Bundle\\AsseticBundle\\Routing\\AsseticLoader',
+            'assetic.cache.class' => 'Assetic\\Cache\\FilesystemCache',
+            'assetic.use_controller_worker.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\Worker\\UseControllerWorker',
+            'assetic.request_listener.class' => 'Symfony\\Bundle\\AsseticBundle\\EventListener\\RequestListener',
+            'doctrine_mongodb.odm.connection.class' => 'Doctrine\\MongoDB\\Connection',
+            'doctrine_mongodb.odm.configuration.class' => 'Doctrine\\ODM\\MongoDB\\Configuration',
+            'doctrine_mongodb.odm.document_manager.class' => 'Doctrine\\ODM\\MongoDB\\DocumentManager',
+            'doctrine_mongodb.odm.manager_configurator.class' => 'Doctrine\\Bundle\\MongoDBBundle\\ManagerConfigurator',
+            'doctrine_mongodb.odm.logger.class' => 'Doctrine\\Bundle\\MongoDBBundle\\Logger\\Logger',
+            'doctrine_mongodb.odm.logger.aggregate.class' => 'Doctrine\\Bundle\\MongoDBBundle\\Logger\\AggregateLogger',]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471420" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>4020</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 41 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:4020 and app/cache/prod/appProdProjectContainer.php:1655.]]></message>
+        <context start-line="4015" end-line="4025"><![CDATA[            'doctrine_mongodb.odm.proxy_namespace' => 'MongoDBODMProxies',
+            'doctrine_mongodb.odm.proxy_dir' => '/home/foobar/code/app/cache/dev/doctrine/odm/mongodb/Proxies',
+            'doctrine_mongodb.odm.auto_generate_proxy_classes' => false,
+            'doctrine_mongodb.odm.hydrator_namespace' => 'Hydrators',
+            'doctrine_mongodb.odm.hydrator_dir' => '/home/foobar/code/app/cache/dev/doctrine/odm/mongodb/Hydrators',
+            'doctrine_mongodb.odm.auto_generate_hydrator_classes' => false,
+            'doctrine_mongodb.odm.default_commit_options' => array(
+
+            ),
+            'doctrine_mongodb.odm.connections' => array(
+                'default' => 'doctrine_mongodb.odm.default_connection',]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471440" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>4020</line>
+        <resource><![CDATA[app/cache/dev/appDevDebugProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 42 lines appear both in app/cache/dev/appDevDebugProjectContainer.php:4020 and app/insight_cache/appProdProjectContainer.php:1656.]]></message>
+        <context start-line="4015" end-line="4025"><![CDATA[            'doctrine_mongodb.odm.proxy_namespace' => 'MongoDBODMProxies',
+            'doctrine_mongodb.odm.proxy_dir' => '/home/foobar/code/app/cache/dev/doctrine/odm/mongodb/Proxies',
+            'doctrine_mongodb.odm.auto_generate_proxy_classes' => false,
+            'doctrine_mongodb.odm.hydrator_namespace' => 'Hydrators',
+            'doctrine_mongodb.odm.hydrator_dir' => '/home/foobar/code/app/cache/dev/doctrine/odm/mongodb/Hydrators',
+            'doctrine_mongodb.odm.auto_generate_hydrator_classes' => false,
+            'doctrine_mongodb.odm.default_commit_options' => array(
+
+            ),
+            'doctrine_mongodb.odm.connections' => array(
+                'default' => 'doctrine_mongodb.odm.default_connection',]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471388" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3</line>
+        <resource><![CDATA[app/cache/dev/doctrine/odm/mongodb/Hydrators/GedmoTranslatableDocumentTranslationHydrator.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 75 lines appear in app/cache/dev/doctrine/odm/mongodb/Hydrators/GedmoTranslatableDocumentTranslationHydrator.php:3, app/cache/prod/doctrine/odm/mongodb/Hydrators/GedmoTranslatableDocumentTranslationHydrator.php:3 and app/insight_cache/doctrine/odm/mongodb/Hydrators/GedmoTranslatableDocumentTranslationHydrator.php:3.]]></message>
+        <context start-line="1" end-line="8"><![CDATA[<?php
+
+namespace Hydrators;
+
+use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ODM\MongoDB\Mapping\ClassMetadata;
+use Doctrine\ODM\MongoDB\Hydrator\HydratorInterface;
+use Doctrine\ODM\MongoDB\UnitOfWork;]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471410" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3</line>
+        <resource><![CDATA[app/cache/dev/doctrine/odm/mongodb/Hydrators/RdoObservatoryBundleDocumentCoordinatesHydrator.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 43 lines appear in app/cache/dev/doctrine/odm/mongodb/Hydrators/RdoObservatoryBundleDocumentCoordinatesHydrator.php:3, app/cache/prod/doctrine/odm/mongodb/Hydrators/RdoObservatoryBundleDocumentCoordinatesHydrator.php:3 and app/insight_cache/doctrine/odm/mongodb/Hydrators/RdoObservatoryBundleDocumentCoordinatesHydrator.php:3.]]></message>
+        <context start-line="1" end-line="8"><![CDATA[<?php
+
+namespace Hydrators;
+
+use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ODM\MongoDB\Mapping\ClassMetadata;
+use Doctrine\ODM\MongoDB\Hydrator\HydratorInterface;
+use Doctrine\ODM\MongoDB\UnitOfWork;]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471400" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3</line>
+        <resource><![CDATA[app/cache/dev/doctrine/odm/mongodb/Hydrators/RdoObservatoryBundleDocumentObservatoryHydrator.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 100 lines appear in app/cache/dev/doctrine/odm/mongodb/Hydrators/RdoObservatoryBundleDocumentObservatoryHydrator.php:3, app/cache/prod/doctrine/odm/mongodb/Hydrators/RdoObservatoryBundleDocumentObservatoryHydrator.php:3 and app/insight_cache/doctrine/odm/mongodb/Hydrators/RdoObservatoryBundleDocumentObservatoryHydrator.php:3.]]></message>
+        <context start-line="1" end-line="8"><![CDATA[<?php
+
+namespace Hydrators;
+
+use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ODM\MongoDB\Mapping\ClassMetadata;
+use Doctrine\ODM\MongoDB\Hydrator\HydratorInterface;
+use Doctrine\ODM\MongoDB\UnitOfWork;]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471449" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3</line>
+        <resource><![CDATA[app/cache/dev/doctrine/odm/mongodb/Proxies/__CG__GedmoTranslatableDocumentTranslation.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 296 lines appear in app/cache/dev/doctrine/odm/mongodb/Proxies/__CG__GedmoTranslatableDocumentTranslation.php:3, app/cache/prod/doctrine/odm/mongodb/Proxies/__CG__GedmoTranslatableDocumentTranslation.php:3 and app/insight_cache/doctrine/odm/mongodb/Proxies/__CG__GedmoTranslatableDocumentTranslation.php:3.]]></message>
+        <context start-line="1" end-line="8"><![CDATA[<?php
+
+namespace MongoDBODMProxies\__CG__\Gedmo\Translatable\Document;
+
+/**
+ * DO NOT EDIT THIS FILE - IT WAS CREATED BY DOCTRINE'S PROXY GENERATOR
+ */
+class Translation extends \Gedmo\Translatable\Document\Translation implements \Doctrine\ODM\MongoDB\Proxy\Proxy]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471411" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>79</line>
+        <resource><![CDATA[app/cache/dev/doctrine/odm/mongodb/Proxies/__CG__GedmoTranslatableDocumentTranslation.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 101 lines appear both in app/cache/dev/doctrine/odm/mongodb/Proxies/__CG__GedmoTranslatableDocumentTranslation.php:79 and app/cache/dev/doctrine/odm/mongodb/Proxies/__CG__RdoObservatoryBundleDocumentCoordinates.php:79.]]></message>
+        <context start-line="74" end-line="84"><![CDATA[     * 
+     */
+    public function __wakeup()
+    {
+        if ( ! $this->__isInitialized__) {
+            $this->__initializer__ = function (Translation $proxy) {
+                $proxy->__setInitializer(null);
+                $proxy->__setCloner(null);
+
+                $existingProperties = get_object_vars($proxy);
+]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471434" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>79</line>
+        <resource><![CDATA[app/cache/dev/doctrine/odm/mongodb/Proxies/__CG__GedmoTranslatableDocumentTranslation.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 116 lines appear both in app/cache/dev/doctrine/odm/mongodb/Proxies/__CG__GedmoTranslatableDocumentTranslation.php:79 and app/cache/dev/doctrine/odm/mongodb/Proxies/__CG__RdoObservatoryBundleDocumentObservatory.php:79.]]></message>
+        <context start-line="74" end-line="84"><![CDATA[     * 
+     */
+    public function __wakeup()
+    {
+        if ( ! $this->__isInitialized__) {
+            $this->__initializer__ = function (Translation $proxy) {
+                $proxy->__setInitializer(null);
+                $proxy->__setCloner(null);
+
+                $existingProperties = get_object_vars($proxy);
+]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471413" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3</line>
+        <resource><![CDATA[app/cache/dev/doctrine/odm/mongodb/Proxies/__CG__RdoObservatoryBundleDocumentCoordinates.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 215 lines appear in app/cache/dev/doctrine/odm/mongodb/Proxies/__CG__RdoObservatoryBundleDocumentCoordinates.php:3, app/cache/prod/doctrine/odm/mongodb/Proxies/__CG__RdoObservatoryBundleDocumentCoordinates.php:3 and app/insight_cache/doctrine/odm/mongodb/Proxies/__CG__RdoObservatoryBundleDocumentCoordinates.php:3.]]></message>
+        <context start-line="1" end-line="8"><![CDATA[<?php
+
+namespace MongoDBODMProxies\__CG__\Rdo\ObservatoryBundle\Document;
+
+/**
+ * DO NOT EDIT THIS FILE - IT WAS CREATED BY DOCTRINE'S PROXY GENERATOR
+ */
+class Coordinates extends \Rdo\ObservatoryBundle\Document\Coordinates implements \Doctrine\ODM\MongoDB\Proxy\Proxy]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471417" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>3</line>
+        <resource><![CDATA[app/cache/dev/doctrine/odm/mongodb/Proxies/__CG__RdoObservatoryBundleDocumentObservatory.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 340 lines appear in app/cache/dev/doctrine/odm/mongodb/Proxies/__CG__RdoObservatoryBundleDocumentObservatory.php:3, app/cache/prod/doctrine/odm/mongodb/Proxies/__CG__RdoObservatoryBundleDocumentObservatory.php:3 and app/insight_cache/doctrine/odm/mongodb/Proxies/__CG__RdoObservatoryBundleDocumentObservatory.php:3.]]></message>
+        <context start-line="1" end-line="8"><![CDATA[<?php
+
+namespace MongoDBODMProxies\__CG__\Rdo\ObservatoryBundle\Document;
+
+/**
+ * DO NOT EDIT THIS FILE - IT WAS CREATED BY DOCTRINE'S PROXY GENERATOR
+ */
+class Observatory extends \Rdo\ObservatoryBundle\Document\Observatory implements \Doctrine\ODM\MongoDB\Proxy\Proxy]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471389" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>9</line>
+        <resource><![CDATA[app/cache/prod/appProdProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 216 lines appear both in app/cache/prod/appProdProjectContainer.php:9 and app/insight_cache/appProdProjectContainer.php:9.]]></message>
+        <context start-line="4" end-line="14"><![CDATA[use Symfony\Component\DependencyInjection\Exception\InactiveScopeException;
+use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
+use Symfony\Component\DependencyInjection\Exception\LogicException;
+use Symfony\Component\DependencyInjection\Exception\RuntimeException;
+use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
+class appProdProjectContainer extends Container
+{
+    public function __construct()
+    {
+        $this->parameters = $this->getDefaultParameters();
+        $this->services =]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471453" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>228</line>
+        <resource><![CDATA[app/cache/prod/appProdProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 51 lines appear both in app/cache/prod/appProdProjectContainer.php:228 and app/insight_cache/appProdProjectContainer.php:228.]]></message>
+        <context start-line="223" end-line="233"><![CDATA[    {
+        return $this->services['annotation_reader'] = new \Doctrine\Common\Annotations\FileCacheReader(new \Doctrine\Common\Annotations\AnnotationReader(), '/home/foobar/code/app/cache/prod/annotations', false);
+    }
+    protected function getAssetic_AssetManagerService()
+    {
+        $this->services['assetic.asset_manager'] = $instance = new \Assetic\Factory\LazyAssetManager($this->get('assetic.asset_factory'), array('twig' => new \Assetic\Factory\Loader\CachedFormulaLoader(new \Assetic\Extension\Twig\TwigFormulaLoader($this->get('twig')), new \Assetic\Cache\ConfigCache('/home/foobar/code/app/cache/prod/assetic/config'), false)));
+        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($this->get('templating.loader'), '', '/home/foobar/code/app/Resources/views', '/\\.[^.]+\\.twig$/'), 'twig');
+        return $instance;
+    }
+    protected function getAssetic_Filter_CssrewriteService()
+    {]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471429" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>282</line>
+        <resource><![CDATA[app/cache/prod/appProdProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 316 lines appear both in app/cache/prod/appProdProjectContainer.php:282 and app/insight_cache/appProdProjectContainer.php:282.]]></message>
+        <context start-line="277" end-line="287"><![CDATA[        $instance->setMetadataDriverImpl($d);
+        $instance->setProxyDir('/home/foobar/code/app/cache/prod/doctrine/odm/mongodb/Proxies');
+        $instance->setProxyNamespace('MongoDBODMProxies');
+        $instance->setAutoGenerateProxyClasses(false);
+        $instance->setHydratorDir('/home/foobar/code/app/cache/prod/doctrine/odm/mongodb/Hydrators');
+        $instance->setHydratorNamespace('Hydrators');
+        $instance->setAutoGenerateHydratorClasses(false);
+        $instance->setDefaultDB('symfony');
+        $instance->setDefaultCommitOptions(array());
+        $instance->setRetryConnect(0);
+        $instance->setRetryQuery(0);]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471393" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>597</line>
+        <resource><![CDATA[app/cache/prod/appProdProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 59 lines appear both in app/cache/prod/appProdProjectContainer.php:597 and app/insight_cache/appProdProjectContainer.php:597.]]></message>
+        <context start-line="592" end-line="602"><![CDATA[    {
+        return $this->services['monolog.handler.main'] = new \Monolog\Handler\FingersCrossedHandler($this->get('monolog.handler.nested'), 400, 0, true, true);
+    }
+    protected function getMonolog_Handler_NestedService()
+    {
+        return $this->services['monolog.handler.nested'] = new \Monolog\Handler\StreamHandler('/home/foobar/code/app/logs/prod.log', 100, true);
+    }
+    protected function getMonolog_Logger_DoctrineService()
+    {
+        $this->services['monolog.logger.doctrine'] = $instance = new \Symfony\Bridge\Monolog\Logger('doctrine');
+        $instance->pushHandler($this->get('monolog.handler.console'));]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471416" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>655</line>
+        <resource><![CDATA[app/cache/prod/appProdProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 67 lines appear both in app/cache/prod/appProdProjectContainer.php:655 and app/insight_cache/appProdProjectContainer.php:655.]]></message>
+        <context start-line="650" end-line="660"><![CDATA[    {
+        return $this->services['response_listener'] = new \Symfony\Component\HttpKernel\EventListener\ResponseListener('UTF-8');
+    }
+    protected function getRouterService()
+    {
+        return $this->services['router'] = new \Symfony\Bundle\FrameworkBundle\Routing\Router($this, '/home/foobar/code/app/config/routing.yml', array('cache_dir' => '/home/foobar/code/app/cache/prod', 'debug' => false, 'generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper', 'generator_cache_class' => 'appProdUrlGenerator', 'matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper', 'matcher_cache_class' => 'appProdUrlMatcher', 'strict_requirements' => NULL), $this->get('router.request_context', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('monolog.logger.router', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+    }
+    protected function getRouterListenerService()
+    {
+        return $this->services['router_listener'] = new \Symfony\Component\HttpKernel\EventListener\RouterListener($this->get('router'), $this->get('router.request_context', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('monolog.logger.request', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('request_stack'));
+    }]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471446" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>721</line>
+        <resource><![CDATA[app/cache/prod/appProdProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 56 lines appear both in app/cache/prod/appProdProjectContainer.php:721 and app/insight_cache/appProdProjectContainer.php:721.]]></message>
+        <context start-line="716" end-line="726"><![CDATA[    {
+        return $this->services['security.rememberme.response_listener'] = new \Symfony\Component\Security\Http\RememberMe\ResponseListener();
+    }
+    protected function getSecurity_SecureRandomService()
+    {
+        return $this->services['security.secure_random'] = new \Symfony\Component\Security\Core\Util\SecureRandom('/home/foobar/code/app/cache/prod/secure_random.seed', $this->get('monolog.logger.security', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+    }
+    protected function getSecurity_Validator_UserPasswordService()
+    {
+        return $this->services['security.validator.user_password'] = new \Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator($this->get('security.context'), $this->get('security.encoder_factory'));
+    }]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471397" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>1197</line>
+        <resource><![CDATA[app/cache/prod/appProdProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 26 lines appear both in app/cache/prod/appProdProjectContainer.php:1197 and app/insight_cache/appProdProjectContainer.php:1197.]]></message>
+        <context start-line="1192" end-line="1202"><![CDATA[            'kernel.environment' => 'prod',
+            'kernel.debug' => false,
+            'kernel.name' => 'app',
+            'kernel.cache_dir' => '/home/foobar/code/app/cache/prod',
+            'kernel.logs_dir' => '/home/foobar/code/app/logs',
+            'kernel.bundles' => array(
+                'FrameworkBundle' => 'Symfony\\Bundle\\FrameworkBundle\\FrameworkBundle',
+                'SecurityBundle' => 'Symfony\\Bundle\\SecurityBundle\\SecurityBundle',
+                'TwigBundle' => 'Symfony\\Bundle\\TwigBundle\\TwigBundle',
+                'MonologBundle' => 'Symfony\\Bundle\\MonologBundle\\MonologBundle',
+                'SwiftmailerBundle' => 'Symfony\\Bundle\\SwiftmailerBundle\\SwiftmailerBundle',]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471405" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="architecture">
+        <line>1606</line>
+        <resource><![CDATA[app/cache/prod/appProdProjectContainer.php]]></resource>
+        <title>Code should not be duplicated</title>
+        <message><![CDATA[The next 46 lines appear both in app/cache/prod/appProdProjectContainer.php:1606 and app/insight_cache/appProdProjectContainer.php:1607.]]></message>
+        <context start-line="1601" end-line="1611"><![CDATA[            'assetic.write_to' => '/home/foobar/code/app/../web',
+            'assetic.variables' => array(
+            ),
+            'assetic.java.bin' => '/usr/bin/java',
+            'assetic.node.bin' => '/usr/bin/node',
+            'assetic.ruby.bin' => '/usr/bin/ruby',
+            'assetic.sass.bin' => '/usr/bin/sass',
+            'assetic.filter.cssrewrite.class' => 'Assetic\\Filter\\CssRewriteFilter',
+            'assetic.twig_extension.functions' => array(
+            ),
+            'doctrine_mongodb.odm.connection.class' => 'Doctrine\\MongoDB\\Connection',]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471402" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="deadcode">
+        <line>21</line>
+        <resource><![CDATA[src/Rdo/GlobalBundle/DependencyInjection/Configuration.php]]></resource>
+        <title>Unused method, property, variable or parameter</title>
+        <message><![CDATA[This rootNode local variable is declared but never used. You should remove it.]]></message>
+        <context start-line="16" end-line="26"><![CDATA[     * {@inheritDoc}
+     */
+    public function getConfigTreeBuilder()
+    {
+        $treeBuilder = new TreeBuilder();
+        $rootNode = $treeBuilder->root('rdo_global');
+
+        // Here you should define the parameters that are allowed to
+        // configure your bundle. See the documentation linked above for
+        // more information on that topic.
+]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471451" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="deadcode">
+        <line>23</line>
+        <resource><![CDATA[src/Rdo/GlobalBundle/DependencyInjection/RdoGlobalExtension.php]]></resource>
+        <title>Unused method, property, variable or parameter</title>
+        <message><![CDATA[This config local variable is declared but never used. You should remove it.]]></message>
+        <context start-line="18" end-line="28"><![CDATA[     * {@inheritDoc}
+     */
+    public function load(array $configs, ContainerBuilder $container)
+    {
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
+    }
+}]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471383" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="deadcode">
+        <line>21</line>
+        <resource><![CDATA[src/Rdo/ObservatoryBundle/DependencyInjection/Configuration.php]]></resource>
+        <title>Unused method, property, variable or parameter</title>
+        <message><![CDATA[This rootNode local variable is declared but never used. You should remove it.]]></message>
+        <context start-line="16" end-line="26"><![CDATA[     * {@inheritDoc}
+     */
+    public function getConfigTreeBuilder()
+    {
+        $treeBuilder = new TreeBuilder();
+        $rootNode = $treeBuilder->root('rdo_observatory');
+
+        // Here you should define the parameters that are allowed to
+        // configure your bundle. See the documentation linked above for
+        // more information on that topic.
+]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471421" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="deadcode">
+        <line>23</line>
+        <resource><![CDATA[src/Rdo/ObservatoryBundle/DependencyInjection/RdoObservatoryExtension.php]]></resource>
+        <title>Unused method, property, variable or parameter</title>
+        <message><![CDATA[This config local variable is declared but never used. You should remove it.]]></message>
+        <context start-line="18" end-line="28"><![CDATA[     * {@inheritDoc}
+     */
+    public function load(array $configs, ContainerBuilder $container)
+    {
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.xml');
+    }
+}]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471419" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="deadcode">
+        <line>3</line>
+        <resource><![CDATA[web/app.php]]></resource>
+        <title>Unused use statement should be avoided</title>
+        <message><![CDATA[The class Symfony\Component\ClassLoader\ApcClassLoader is declared but never used. You should remove the use statement.]]></message>
+        <context start-line="1" end-line="8"><![CDATA[<?php
+
+use Symfony\Component\ClassLoader\ApcClassLoader;
+use Symfony\Component\HttpFoundation\Request;
+
+$loader = require_once __DIR__.'/../app/bootstrap.php.cache';
+
+// Use APC for autoloading to improve performance.]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471384" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="critical" category="security">
+        <line>13</line>
+        <resource><![CDATA[app/config/security.yml]]></resource>
+        <title>Sensitive data should not be present in non-parameter configuration files</title>
+        <message><![CDATA[A sensitive data has been detected in your configuration file (password parameter). You should consider storing it in a single parameter file.]]></message>
+        <context start-line="8" end-line="18"><![CDATA[
+    providers:
+        in_memory:
+            memory:
+                users:
+                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/]]></context>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471450" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="critical" category="security">
+        <line>0</line>
+        <title>Symfony2 secret should be changed</title>
+        <message><![CDATA[The secret is the default one from the Symfony Standard Edition]]></message>
+        <context/>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471386" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="security">
+        <line>0</line>
+        <title>Default session cookie's name should be changed.</title>
+        <message><![CDATA[The session cookie name is the default one, PHPSESSID. You should consider overwriting it thanks to session.name parameter (see the official documentation).]]></message>
+        <context/>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471439" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="info" category="security">
+        <line>0</line>
+        <title>A route should always have a valid HTTP method</title>
+        <message><![CDATA[The route "rdo_global_homepage" should have a routing method (GET/POST/PUT). It is mandatory.]]></message>
+        <context/>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471452" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="major" category="security">
+        <line>0</line>
+        <title>Strong password hashing algorithm should be used for password</title>
+        <message><![CDATA[The plaintext password hashing algorithm used for Symfony\Component\Security\Core\User\User is insecure and should not be used in production.]]></message>
+        <context/>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471443" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="minor" category="bugrisk">
+        <line>0</line>
+        <title>The Symfony version should be the latest stable one</title>
+        <message><![CDATA[This project uses Symfony v2.4.4, which is not the latest release of the v2.4 branch. You should use the v2.4.8 instead to benefit from the latest bugfixes.]]></message>
+        <context/>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471418" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="major" category="bugrisk">
+        <line>0</line>
+        <title>The Symfony version should be maintained</title>
+        <message><![CDATA[Symfony version v2.4.4 is not maintained anymore since August 2014 (even if new releases can still be released for security issues).]]></message>
+        <context/>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=new#173471409" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="major" category="security">
+        <line>0</line>
+        <resource><![CDATA[web]]></resource>
+        <title>Symfony applications should not contain a config.php file</title>
+        <message><![CDATA[This config.php file should only be used to bootstrap a Symfony application. Before releasing to production, you should remove it, otherwise attackers could get valuable insight about your application.]]></message>
+        <context/>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471407" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="info" category="security">
+        <line>0</line>
+        <resource><![CDATA[web/apple-touch-icon.png]]></resource>
+        <title>Default favicon should be changed</title>
+        <message><![CDATA[Default Apple touch Symfony2 favicon found.
+             This reveals the backend engine of the application and makes it more vulnerable to attackers. Consider using a custom favicon instead - plus, your users will memorize your application more easily.]]></message>
+        <context/>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471423" rel="self" type="text/html"/>
+      </violation>
+      <violation severity="info" category="security">
+        <line>0</line>
+        <resource><![CDATA[web/favicon.ico]]></resource>
+        <title>Default favicon should be changed</title>
+        <message><![CDATA[Default Symfony2 favicon found.
+             This reveals the backend engine of the application and makes it more vulnerable to attackers. Consider using a custom favicon instead - plus, your users will memorize your application more easily.]]></message>
+        <context/>
+        <link href="https://insight.sensiolabs.com/projects/0dd085ca-bd58-4d88-adc4-58a06566a173/analyses/64?status=existing#173471392" rel="self" type="text/html"/>
+      </violation>
+    </violations>
+    <grades>
+      <entry><![CDATA[none]]></entry>
+      <entry><![CDATA[bronze]]></entry>
+      <entry><![CDATA[silver]]></entry>
+      <entry><![CDATA[gold]]></entry>
+      <entry><![CDATA[platinum]]></entry>
+    </grades>
+    <failed>false</failed>
+    <grade><![CDATA[none]]></grade>
+    <next-grade><![CDATA[bronze]]></next-grade>
+    <begin-at><![CDATA[2014-08-24T08:00:05+0200]]></begin-at>
+    <end-at><![CDATA[2014-08-24T08:01:35+0200]]></end-at>
+    <duration>50</duration>
+    <number>64</number>
+    <altered>true</altered>
+    <remediation-cost>243.5</remediation-cost>
+    <nb-violations>73</nb-violations>
+    <reference><![CDATA[2a676252273621bde0a759c7efcf2e3dfbf21240]]></reference>
+    <__is_initialized__>true</__is_initialized__>
+    <configuration>
+      <ignored-branches>
+        <branch><![CDATA[gh-pages]]></branch>
+      </ignored-branches>
+      <pre-composer-script><![CDATA[#!/bin/bash
+
+yes '' | pecl install mongo
+# Do what you need to setup your project
+cp app/config/parameters.yml.dist app/config/parameters.yml
+sed -i -e "s/database_user:.*/database_user: root/" app/config/parameters.yml
+sed -i -e "s/database_password:.*/database_password: Secr3t/" app/config/parameters.yml
+]]></pre-composer-script>
+      <post-composer-script/>
+      <php-ini><![CDATA[extension=mongo.so
+]]></php-ini>
+      <global-excluded-dirs>
+        <dir><![CDATA[vendor]]></dir>
+        <dir><![CDATA[vendors]]></dir>
+        <dir><![CDATA[test]]></dir>
+        <dir><![CDATA[tests]]></dir>
+        <dir><![CDATA[Tests]]></dir>
+        <dir><![CDATA[spec]]></dir>
+        <dir><![CDATA[features]]></dir>
+        <dir><![CDATA[Fixtures]]></dir>
+        <dir><![CDATA[DataFixtures]]></dir>
+      </global-excluded-dirs>
+      <excluded-patterns>
+        <pattern><![CDATA[app/check.php]]></pattern>
+        <pattern><![CDATA[app/SymfonyRequirements.php]]></pattern>
+        <pattern><![CDATA[web/config.php]]></pattern>
+        <pattern><![CDATA[web/app_*.php]]></pattern>
+      </excluded-patterns>
+      <patterns>
+        <file>
+          <pattern><![CDATA[*.php]]></pattern>
+          <pattern><![CDATA[*.twig]]></pattern>
+          <pattern><![CDATA[*.xml]]></pattern>
+          <pattern><![CDATA[*.yml]]></pattern>
+          <pattern><![CDATA[*.yaml]]></pattern>
+          <pattern><![CDATA[*.dist]]></pattern>
+          <pattern><![CDATA[*.sql]]></pattern>
+          <pattern><![CDATA[composer.*]]></pattern>
+          <pattern><![CDATA[.gitignore]]></pattern>
+          <pattern><![CDATA[license]]></pattern>
+          <pattern><![CDATA[LICENSE]]></pattern>
+          <pattern><![CDATA[readme]]></pattern>
+          <pattern><![CDATA[README]]></pattern>
+          <pattern><![CDATA[makefile]]></pattern>
+          <pattern><![CDATA[Makefile]]></pattern>
+          <pattern><![CDATA[.htaccess]]></pattern>
+        </file>
+        <php>
+          <pattern><![CDATA[*.php]]></pattern>
+        </php>
+        <twig>
+          <pattern><![CDATA[*.twig]]></pattern>
+        </twig>
+      </patterns>
+      <rules/>
+      <parameters>
+        <parameter name="project_type">10</parameter>
+      </parameters>
+    </configuration>
+    <previous-analyses-references>
+      <analysis-reference number="64">2a676252273621bde0a759c7efcf2e3dfbf21240</analysis-reference>
+      <analysis-reference number="63">2a676252273621bde0a759c7efcf2e3dfbf21240</analysis-reference>
+      <analysis-reference number="62">3498ebd4d686da41d2e9c9a0540f64b2f92e51e0</analysis-reference>
+      <analysis-reference number="61">e59ec0507bfdb4b18ffb476953367cc78e57d368</analysis-reference>
+      <analysis-reference number="60">4951be8210f9bb653392d82cd5a08a9ae4d33779</analysis-reference>
+      <analysis-reference number="59">3498ebd4d686da41d2e9c9a0540f64b2f92e51e0</analysis-reference>
+      <analysis-reference number="58">3498ebd4d686da41d2e9c9a0540f64b2f92e51e0</analysis-reference>
+      <analysis-reference number="57">adf96a397a1f131ab221716356ce707c83aa0657</analysis-reference>
+      <analysis-reference number="56">4567f148034549d52dcd7b54db2a33997298c523</analysis-reference>
+      <analysis-reference number="55">b6ecfdc49c2029b23a0347ffd9c131c850cfa600</analysis-reference>
+      <analysis-reference number="54">b6ecfdc49c2029b23a0347ffd9c131c850cfa600</analysis-reference>
+      <analysis-reference number="53">1a3db0ddcb944d25905c7883fa1b53d4e24d912f</analysis-reference>
+      <analysis-reference number="50">d6b4ed575e9a7c69f96d4883b6a2602b93a46c69</analysis-reference>
+    </previous-analyses-references>
+    <nb-violations-new>54</nb-violations-new>
+    <nb-violations-existing>19</nb-violations-existing>
+    <nb-violations-fixed>0</nb-violations-fixed>
+    <nb-violations-ignored>0</nb-violations-ignored>
+  </last-analysis>
+  <project-edit method="PUT" action="/api/projects/0dd085ca-bd58-4d88-adc4-58a06566a173">
+    <input type="text" value="rdo_directory-api" name="insight_project[name]" required="required"/>
+    <input type="text" value="git@github.com:routes-des-observatoires/directory-api.git" name="insight_project[repositoryUrl]" required="required"/>
+    <input type="radio" value="10" checked="1" name="insight_project[type]" required="required"/>
+    <input type="radio" value="11" name="insight_project[type]" required="required"/>
+    <input type="radio" value="9" name="insight_project[type]" required="required"/>
+    <input type="radio" value="8" name="insight_project[type]" required="required"/>
+    <input type="radio" value="2" name="insight_project[type]" required="required"/>
+    <input type="radio" value="4" name="insight_project[type]" required="required"/>
+    <input type="radio" value="7" name="insight_project[type]" required="required"/>
+    <input type="radio" value="0" name="insight_project[type]" required="required"/>
+    <input type="radio" value="1" name="insight_project[type]" required="required"/>
+    <input type="radio" value="6" name="insight_project[type]" required="required"/>
+    <input type="checkbox" value="1" checked="1" name="insight_project[public]"/>
+    <input type="text" value="master" name="insight_project[branch]" required="required"/>
+    <input type="checkbox" value="1" name="insight_project[deleteCode]"/>
+    <textarea name="insight_project[configuration]" required="required"><![CDATA[ignore_branches:
+    - gh-pages
+
+pre_composer_script: |
+    #!/bin/bash
+
+    yes '' | pecl install mongo
+    # Do what you need to setup your project
+    cp app/config/parameters.yml.dist app/config/parameters.yml
+    sed -i -e "s/database_user:.*/database_user: root/" app/config/parameters.yml
+    sed -i -e "s/database_password:.*/database_password: Secr3t/" app/config/parameters.yml
+
+php_ini: |
+    extension=mongo.so
+
+global_exclude_dirs:
+    - vendor
+    - vendors
+    - test
+    - tests
+    - Tests
+    - spec
+    - features
+    - Fixtures
+    - DataFixtures]]></textarea>
+  </project-edit>
+  <id><![CDATA[0dd085ca-bd58-4d88-adc4-58a06566a173]]></id>
+  <name><![CDATA[rdo_directory-api]]></name>
+  <repository-url><![CDATA[git@github.com:routes-des-observatoires/directory-api.git]]></repository-url>
+  <public>true</public>
+  <report-available>true</report-available>
+  <type>10</type>
+  <configuration><![CDATA[ignore_branches:
+    - gh-pages
+
+pre_composer_script: |
+    #!/bin/bash
+
+    yes '' | pecl install mongo
+    # Do what you need to setup your project
+    cp app/config/parameters.yml.dist app/config/parameters.yml
+    sed -i -e "s/database_user:.*/database_user: root/" app/config/parameters.yml
+    sed -i -e "s/database_password:.*/database_password: Secr3t/" app/config/parameters.yml
+
+php_ini: |
+    extension=mongo.so
+
+global_exclude_dirs:
+    - vendor
+    - vendors
+    - test
+    - tests
+    - Tests
+    - spec
+    - features
+    - Fixtures
+    - DataFixtures]]></configuration>
+</project>
