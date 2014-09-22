@@ -55,6 +55,7 @@ angular.module('services')
         var getOne = function (projectId) {
             var deferred = $q.defer();
             projectCrawlettangular.one('projects', projectId).get().then(function(project){
+                console.log(project);
                 deferred.resolve(projectparser.parseSingleProject(project));
             }, function(error){
                 deferred.reject(error);

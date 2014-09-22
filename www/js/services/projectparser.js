@@ -20,7 +20,7 @@ angular.module('services')
             }
             project.last_analysis.nb_violations_by_severity = countViolationsByType('severity', project.last_analysis.violations);
             project.last_analysis.nb_violations_by_category = countViolationsByType('category', project.last_analysis.violations);
-            console.log(project);
+
             return project;
         };
 
