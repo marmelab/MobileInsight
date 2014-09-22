@@ -9,7 +9,8 @@ angular.module('insightMobile', [
   'controllers',
   'services',
   'restangular',
-  'constants'
+  'constants',
+  'angularMoment'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider

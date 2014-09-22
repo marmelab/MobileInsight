@@ -11,13 +11,16 @@
 <div class="row">
   <div class="col"><img src="img/medal-{{ project.last_analysis.grade}}.png"></div>
   <div class="col col-75">
-    <p>The latest analysis ({{ project.last_analysis.end_at}}) contained <span class="badge badge-energized"> {{ project.last_analysis.nb_violations}} violations</span>, including :</p>
+    <p>Analyzed {{analysisDate}}, duration: {{ duration }}.</p>
+    <p>
+      <span class="assertive"> + {{ project.last_analysis.nb_violations_new}} <i class="ion-android-arrow-up-right" data-pack="android" data-tags="chevron"></i></span> 
+      <span class="balanced"> - {{ project.last_analysis.nb_violations_fixed}} <i class="ion-android-arrow-down-right" data-pack="android" data-tags="chevron"></i></span>
+    </p>
 </div>
 </div>
 <div class="row">
-  <div class="col"><span class="badge badge-assertive">{{ project.last_analysis.nb_violations_new}} new</span> </div>
-  <div class="col"><span class="badge badge-positive">{{ project.last_analysis.nb_violations_fixed}} fixed</span> </div>
-  <div class="col"><span class="badge badge-royal">{{ project.last_analysis.nb_violations_existing}} existing</span> </div>
+  <div class="col col"><span class="badge badge-energized"> {{ project.last_analysis.nb_violations}} violations</span></div>
+  <div class="col col"><span class="badge badge-large badge-dark icon-left ion-social-usd">cost : {{ cost }}</span></div>
 </div>
 
 <div class="list">

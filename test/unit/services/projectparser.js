@@ -23,8 +23,24 @@ describe('Service: projectparser', function () {
         parsedJson = projectparser.parseListProject(insightJson);
 
         expect(parsedJson.last_analysis).toBeDefined();
+    });
+
+    it('last analysis object must contain number, grade, date, violations details and remediation cost', function() { 
+        var insightJson = getRectangularListResult(); 
+        parsedJson = projectparser.parseListProject(insightJson);
+
+        expect(parsedJson.last_analysis).toBeDefined();
         expect(parsedJson.last_analysis.number).toBe("1");
         expect(parsedJson.last_analysis.grade).toBe("gold");
+        expect(parsedJson.last_analysis.next_grade).toBe("platinium");
+        expect(parsedJson.last_analysis.end_at).toBe("2014-08-24T08:01:35+0200");
+        expect(parsedJson.last_analysis.duration).toBe("10");
+        expect(parsedJson.last_analysis.nb_violations).toBe("2");
+        expect(parsedJson.last_analysis.nb_violations_new).toBe("1");
+        expect(parsedJson.last_analysis.nb_violations_existing).toBe("1");
+        expect(parsedJson.last_analysis.nb_violations_fixed).toBe("1");
+        expect(parsedJson.last_analysis.nb_violations_ignored).toBe("0");
+        expect(parsedJson.last_analysis.remediation_cost).toBe("200");
     });
 
     it('parseListProject() should return an object with last analysis without violations list', function() { 
@@ -45,6 +61,15 @@ describe('Service: projectparser', function () {
         expect(parsedJson.last_analysis).toBeDefined();
         expect(parsedJson.last_analysis.number).toBe("1");
         expect(parsedJson.last_analysis.grade).toBe("gold");
+        expect(parsedJson.last_analysis.next_grade).toBe("platinium");
+        expect(parsedJson.last_analysis.end_at).toBe("2014-08-24T08:01:35+0200");
+        expect(parsedJson.last_analysis.duration).toBe("10");
+        expect(parsedJson.last_analysis.nb_violations).toBe("2");
+        expect(parsedJson.last_analysis.nb_violations_new).toBe("1");
+        expect(parsedJson.last_analysis.nb_violations_existing).toBe("1");
+        expect(parsedJson.last_analysis.nb_violations_fixed).toBe("1");
+        expect(parsedJson.last_analysis.nb_violations_ignored).toBe("0");
+        expect(parsedJson.last_analysis.remediation_cost).toBe("200");
         expect(parsedJson.last_analysis.violations).toBeDefined();
     });
 
@@ -97,7 +122,8 @@ describe('Service: projectparser', function () {
                 'nb-violations-existing': "1",
                 'nb-violations-fixed': "1",
                 'nb-violations-ignored': "0",
-                'nb-violations-new': "1"
+                'nb-violations-new': "1",
+                'remediation-cost': "200"
             }
         };
     };

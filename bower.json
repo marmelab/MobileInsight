@@ -10,7 +10,8 @@
   "dependencies": {
     "ionic": "driftyco/ionic-bower#1.0.0-beta.12",
     "restangular": "~1.4.0",
-    "x2js": "*"
+    "x2js": "*",
+    "angular-moment": "~0.8.2"
   },
   "devDependencies": {
     "angular-mocks": "1.2.15",

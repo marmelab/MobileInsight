@@ -66,6 +66,7 @@ angular.module('services')
                   nb_violations_existing: analysisFromXml["nb-violations-existing"],
                   nb_violations_fixed: analysisFromXml["nb-violations-fixed"],
                   nb_violations_ignored: analysisFromXml["nb-violations-ignored"],
+                  remediation_cost: analysisFromXml["remediation-cost"]
             }
 
             return analysis;
