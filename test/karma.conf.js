@@ -24,6 +24,8 @@ module.exports = function(config) {
         'www/lib/x2js/xml2json.js', 
         'www/lib/angular-x2js/src/x2js.js', 
         'www/lib/restangular/dist/restangular.min.js', 
+        'www/lib/angular-speakingurl/src/angular-speakingurl.js',
+        'www/lib/speakingurl/speakingurl.min.js', 
         'www/lib/lodash/dist/lodash.min.js', 
         'www/js/app.js',
         'www/js/config/*.js',

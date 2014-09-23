@@ -15,12 +15,17 @@
                 {{ violationType }} violations
             </li>
 
-            <ion-item ng-repeat="violation in project.last_analysis.violations | filter:{ severity: violationType }" ui-sref="app.project_violations_title({ projectId: project.id, violationType: violationType, violationId: violation.internal_id })" class="item item-icon-right">
-                <h2>{{ violation.title }}</h2>
-                <p>Category: <span class="calm">{{ violation.category}}</span></p>
+            <div class="list" ng-repeat="category in violations.categories">
+              <div class="item item-divider">
+                {{ category.title }}
+              </div>
+              <a ng-repeat="title in category.titles" class="item item-icon-right" ui-sref="app.project_violations_title({ projectId: project.id, violationType: violationType, violationCat: category.title, violationTitle: title.slug})" >
+                <h2>{{ title.title }}</h2>
+                <p>{{ title.counter }} violations</p>
                 <i class="icon ion-ios7-arrow-right"></i>
-            </ion-item>
-            
+              </a>
+            </div>
+
         </ion-list>
     </ion-content>
 

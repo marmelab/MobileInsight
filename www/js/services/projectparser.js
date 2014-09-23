@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('services')
-  .service('projectparser', function projectparser() {
+  .service('projectparser', function projectparser($speakingurl) {
+
+        var classifiedViolations = {};
     
         var parseListProject = function (projectFromXml) {
             var project = parseProject(projectFromXml);
@@ -14,15 +16,58 @@ angular.module('services')
             var project = parseListProject(projectFromXml);
             project.last_analysis.violations = [];
             if (projectFromXml["last-analysis"]["violations"] != undefined) {
-                projectFromXml["last-analysis"]["violations"]["violation"].forEach(function(violation, index){
-                        project.last_analysis.violations.push(parseViolation(violation, index))
-                })
+                projectFromXml["last-analysis"]["violations"]["violation"].forEach(addViolation);
             }
-            project.last_analysis.nb_violations_by_severity = countViolationsByType('severity', project.last_analysis.violations);
-            project.last_analysis.nb_violations_by_category = countViolationsByType('category', project.last_analysis.violations);
-
+            project.last_analysis.violations = classifiedViolations;
+            
             return project;
         };
+
+        var addViolation = function (violationRaw) {
+            var violation = parseViolation(violationRaw);
+            var severitySlug = $speakingurl.getSlug(violation.severity);
+            var categorySlug = $speakingurl.getSlug(violation.category);
+            var titleSlug = $speakingurl.getSlug(violation.title);
+            if (classifiedViolations[severitySlug] == undefined) {
+              classifiedViolations[severitySlug] = {
+                counter: 0,
+                title: violation.severity,
+                categories: {}
+              }
+            }
+            if (classifiedViolations[severitySlug]["categories"][categorySlug]   == undefined) {
+              classifiedViolations[severitySlug]["categories"][categorySlug] = {
+                counter: 0,
+                title: violation.category,
+                titles: {}
+              }
+            }
+            if (classifiedViolations[severitySlug]["categories"][categorySlug]["titles"][titleSlug]   == undefined) {
+              classifiedViolations[severitySlug]["categories"][categorySlug]["titles"][titleSlug] = {
+                counter: 0,
+                title: violation.title,
+                slug: titleSlug,
+                violations: []
+              }
+            }
+            classifiedViolations[severitySlug]["counter"] += 1;
+            classifiedViolations[severitySlug]["categories"][categorySlug]["counter"] += 1;
+            classifiedViolations[severitySlug]["categories"][categorySlug]["titles"][titleSlug]["counter"] += 1;
+            classifiedViolations[severitySlug]["categories"][categorySlug]["titles"][titleSlug]["violations"].push(violation);
+        }
+
+        var parseViolation = function(violationFromXml) {
+            var violation = {
+                category: violationFromXml["_category"],
+                severity: violationFromXml["_severity"],
+                context: violationFromXml["context"],
+                line: violationFromXml["line"],
+                title: violationFromXml["title"],
+                message: violationFromXml["message"].__cdata,
+            }
+
+            return violation;
+        }
 
         var countViolationsByType = function (type, violations) {
           var violationsByType = {};
@@ -72,19 +117,7 @@ angular.module('services')
             return analysis;
         }
 
-        var parseViolation = function(violationFromXml, indexForId) {
-            var violation = {
-                internal_id: indexForId,
-                category: violationFromXml["_category"],
-                severity: violationFromXml["_severity"],
-                context: violationFromXml["context"],
-                line: violationFromXml["line"],
-                title: violationFromXml["title"],
-                message: violationFromXml["message"].__cdata,
-            }
 
-            return violation;
-        }
 
         return {
           parseListProject: parseListProject,

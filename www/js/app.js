@@ -2,7 +2,7 @@
 
 angular.module('controllers', []);
 angular.module('constants', []);
-angular.module('services', ['constants', 'cb.x2js', 'restangular']);
+angular.module('services', ['constants', 'cb.x2js', 'restangular', 'angular-speakingurl']);
 
 angular.module('insightMobile', [
   'ionic', 
@@ -10,7 +10,8 @@ angular.module('insightMobile', [
   'services',
   'restangular',
   'constants',
-  'angularMoment'
+  'angularMoment',
+  'angular-speakingurl'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -58,7 +59,7 @@ angular.module('insightMobile', [
       }
     })
     .state('app.project_violations_title', {
-      url: "/projects/:projectId/violations/:violationType/:violationId",
+      url: "/projects/:projectId/violations/:violationType/:violationCat/:violationTitle",
       views: {
         'menuContent' :{
           templateUrl: "templates/project_violations_title.html",

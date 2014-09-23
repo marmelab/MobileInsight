@@ -27,17 +27,17 @@
         </div>
 
         <div class="list">
-            <a ng-if="project.last_analysis.nb_violations_by_severity.critical" class="item item-icon-right assertive" ui-sref="app.project_violations_severity({ projectId: project.id, violationType: 'critical' })">
-                {{ project.last_analysis.nb_violations_by_severity.critical }} critical  violations<i class="icon ion-ios7-arrow-right"></i>
+            <a ng-if="project.last_analysis.violations.critical" class="item item-icon-right assertive" ui-sref="app.project_violations_severity({ projectId: project.id, violationType: 'critical' })">
+                {{ project.last_analysis.violations.critical.counter }} critical  violations<i class="icon ion-ios7-arrow-right"></i>
             </a>
-            <a ng-if="project.last_analysis.nb_violations_by_severity.major" class="item item-icon-right energized" ui-sref="app.project_violations_severity({ projectId: project.id, violationType: 'major' })">
-                {{ project.last_analysis.nb_violations_by_severity.major }} major violations<i class="icon ion-ios7-arrow-right"></i>
+            <a ng-if="project.last_analysis.violations.major" class="item item-icon-right energized" ui-sref="app.project_violations_severity({ projectId: project.id, violationType: 'major' })">
+                {{ project.last_analysis.violations.major.counter }} major violations<i class="icon ion-ios7-arrow-right"></i>
             </a>
-            <a ng-if="project.last_analysis.nb_violations_by_severity.minor" class="item item-icon-right calm" ui-sref="app.project_violations_severity({ projectId: project.id, violationType: 'minor' })">
-                {{ project.last_analysis.nb_violations_by_severity.minor }} minor violations<i class="icon ion-ios7-arrow-right"></i>
+            <a ng-if="project.last_analysis.violations.minor" class="item item-icon-right calm" ui-sref="app.project_violations_severity({ projectId: project.id, violationType: 'minor' })">
+                {{ project.last_analysis.violations.minor.counter }} minor violations<i class="icon ion-ios7-arrow-right"></i>
             </a>
-            <a ng-if="project.last_analysis.nb_violations_by_severity.info" class="item item-icon-right dark" ui-sref="app.project_violations_severity({ projectId: project.id, violationType: 'info' })">
-                {{ project.last_analysis.nb_violations_by_severity.info }} info violations<i class="icon ion-ios7-arrow-right"></i>
+            <a ng-if="project.last_analysis.violations.info" class="item item-icon-right dark" ui-sref="app.project_violations_severity({ projectId: project.id, violationType: 'info' })">
+                {{ project.last_analysis.violations.info.counter }} info violations<i class="icon ion-ios7-arrow-right"></i>
             </a>
         </div>
 

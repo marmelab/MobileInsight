@@ -16,6 +16,7 @@ angular.module('controllers')
               $scope.project = project;
               $scope.violationType = $stateParams.violationType;
               $scope.violationClass = getClassBySeverity($scope.violationType);
+              $scope.violations = project.last_analysis.violations[$scope.violationType];
             }, function(error) {
                 $state.go('app.error');
             });
@@ -23,12 +24,10 @@ angular.module('controllers')
     .controller('ProjectViolationsTitleCtrl', function ($scope, $stateParams, $state, projects) {
             projects.getOne($stateParams.projectId).then(function(project) {
             $scope.project = project;
-            $scope.project.last_analysis.violations.forEach(function(violation){
-                if (violation.internal_id == $stateParams.violationId) {
-                    $scope.violation = violation;
-                    $scope.violationClass = getClassBySeverity(violation.severity);
-                }
-            });
+            $scope.violationType = $stateParams.violationType;
+            $scope.violationClass = getClassBySeverity($scope.violationType);
+            $scope.violationCat = project.last_analysis.violations[$scope.violationType]["categories"][$stateParams.violationCat];
+            $scope.violationsByTitle= $scope.violationCat.titles[$stateParams.violationTitle];
             }, function(error) {
                 $state.go('app.error');
             });
