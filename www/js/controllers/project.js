@@ -1,10 +1,7 @@
 'use strict';
 
 angular.module('controllers')
-    .controller('ProjectCtrl', function ($scope, $stateParams, $state, projects, $ionicNavBarDelegate) {
-            $scope.goBack = function() {
-                $ionicNavBarDelegate.back();
-            };
+    .controller('ProjectCtrl', function ($scope, $stateParams, $state, projects) {
             projects.getOne($stateParams.projectId).then(function(project) {
               $scope.project = project;
               $scope.analysisDate = moment.utc(project.last_analysis.end_at).fromNow();
@@ -14,15 +11,45 @@ angular.module('controllers')
                 $state.go('app.error');
             });
     })
-    .controller('ProjectViolationCtrl', function ($scope, $stateParams) {
-            $scope.violationType = $stateParams.violationType;
+    .controller('ProjectViolationSeverityCtrl', function ($scope, $stateParams, $state, projects) {
+            projects.getOne($stateParams.projectId).then(function(project) {
+              $scope.project = project;
+              $scope.violationType = $stateParams.violationType;
+              $scope.violationClass = getClassBySeverity($scope.violationType);
+            }, function(error) {
+                $state.go('app.error');
+            });
     })
-    .controller('ViolationCtrl', function ($scope, $stateParams) {
+    .controller('ProjectViolationsTitleCtrl', function ($scope, $stateParams, $state, projects) {
+            projects.getOne($stateParams.projectId).then(function(project) {
+            $scope.project = project;
             $scope.project.last_analysis.violations.forEach(function(violation){
                 if (violation.internal_id == $stateParams.violationId) {
                     $scope.violation = violation;
+                    $scope.violationClass = getClassBySeverity(violation.severity);
                 }
+            });
+            }, function(error) {
+                $state.go('app.error');
             });
     });
 
+var getClassBySeverity = function (severity) {
+    var violationClass = "stable";
+    switch (severity) {
+      case "critical":
+        violationClass = "assertive"
+        break;
+      case "major":
+        violationClass = "energized"
+        break;
+      case "minor":
+        violationClass = "calm"
+        break;
+      case "info":
+        violationClass = "dark"
+        break;
+    };
 
+    return violationClass;
+};

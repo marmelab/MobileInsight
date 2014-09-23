@@ -1,57 +1,50 @@
 <ion-view title="SensioLabs Insight">
-  <div class="bar bar-subheader">
-    <h1 class="title">{{project.name}}</h1>
-  </div>
-  <ion-nav-buttons side="right">
-    <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
-  </ion-nav-buttons>
 
+    <div class="bar bar-subheader">
+        <h1 class="title">{{project.name}}</h1>
+    </div>
 
-  <ion-content class="has-subheader has-footer" >
+    <ion-nav-buttons side="right">
+        <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
 
-<div class="row">
-  <div class="col"><img src="img/medal-{{ project.last_analysis.grade}}.png"></div>
-  <div class="col col-75">
-    <p>Analyzed {{analysisDate}}, duration: {{ duration }}.</p>
-    <p>
-      <span class="assertive"> + {{ project.last_analysis.nb_violations_new}} <i class="ion-android-arrow-up-right" data-pack="android" data-tags="chevron"></i></span> 
-      <span class="balanced"> - {{ project.last_analysis.nb_violations_fixed}} <i class="ion-android-arrow-down-right" data-pack="android" data-tags="chevron"></i></span>
-    </p>
-</div>
-</div>
+    <ion-content class="has-subheader has-footer" >
 
+        <div class="row">
+            <div class="col"><img src="img/medal-{{ project.last_analysis.grade}}.png"></div>
+            <div class="col col-75">
+                <p>Analyzed {{analysisDate}}, duration: {{ duration }}.</p>
+                <p>
+                <span class="assertive"> + {{ project.last_analysis.nb_violations_new}} <i class="ion-android-arrow-up-right" data-pack="android" data-tags="chevron"></i></span> 
+                <span class="balanced"> - {{ project.last_analysis.nb_violations_fixed}} <i class="ion-android-arrow-down-right" data-pack="android" data-tags="chevron"></i></span>
+                </p>
+            </div>
+        </div>
 
-<div ui-view name="projectView"  animation="slide-left-right">
+        <div class="row">
+            <div class="col col"><span class="badge badge-energized"> {{ project.last_analysis.nb_violations}} violations</span></div>
+            <div class="col col"><span class="badge badge-large badge-dark icon-left ion-social-usd">cost : {{ cost }}</span></div>
+        </div>
 
-<div class="row">
-  <div class="col col"><span class="badge badge-energized"> {{ project.last_analysis.nb_violations}} violations</span></div>
-  <div class="col col"><span class="badge badge-large badge-dark icon-left ion-social-usd">cost : {{ cost }}</span></div>
-</div>
-  
-<div class="list">
-    <a ng-if="project.last_analysis.nb_violations_by_severity.critical" class="item item-icon-right assertive" ui-sref="app.project.violations({ projectId: project.id, violationType: 'critical' })">
-      {{ project.last_analysis.nb_violations_by_severity.critical }} critical  violations<i class="icon ion-ios7-arrow-right"></i>
-    </a>
-    <a ng-if="project.last_analysis.nb_violations_by_severity.major" class="item item-icon-right energized" ui-sref="app.project.violations({ projectId: project.id, violationType: 'major' })">
-      {{ project.last_analysis.nb_violations_by_severity.major }} major violations<i class="icon ion-ios7-arrow-right"></i>
-    </a>
-    <a ng-if="project.last_analysis.nb_violations_by_severity.minor" class="item item-icon-right calm" ui-sref="app.project.violations({ projectId: project.id, violationType: 'minor' })">
-      {{ project.last_analysis.nb_violations_by_severity.minor }} minor violations<i class="icon ion-ios7-arrow-right"></i>
-    </a>
-    <a ng-if="project.last_analysis.nb_violations_by_severity.info" class="item item-icon-right dark" ui-sref="app.project.violations({ projectId: project.id, violationType: 'info' })">
-      {{ project.last_analysis.nb_violations_by_severity.info }} info violations<i class="icon ion-ios7-arrow-right"></i>
-    </a>
-</div>
+        <div class="list">
+            <a ng-if="project.last_analysis.nb_violations_by_severity.critical" class="item item-icon-right assertive" ui-sref="app.project_violations_severity({ projectId: project.id, violationType: 'critical' })">
+                {{ project.last_analysis.nb_violations_by_severity.critical }} critical  violations<i class="icon ion-ios7-arrow-right"></i>
+            </a>
+            <a ng-if="project.last_analysis.nb_violations_by_severity.major" class="item item-icon-right energized" ui-sref="app.project_violations_severity({ projectId: project.id, violationType: 'major' })">
+                {{ project.last_analysis.nb_violations_by_severity.major }} major violations<i class="icon ion-ios7-arrow-right"></i>
+            </a>
+            <a ng-if="project.last_analysis.nb_violations_by_severity.minor" class="item item-icon-right calm" ui-sref="app.project_violations_severity({ projectId: project.id, violationType: 'minor' })">
+                {{ project.last_analysis.nb_violations_by_severity.minor }} minor violations<i class="icon ion-ios7-arrow-right"></i>
+            </a>
+            <a ng-if="project.last_analysis.nb_violations_by_severity.info" class="item item-icon-right dark" ui-sref="app.project_violations_severity({ projectId: project.id, violationType: 'info' })">
+                {{ project.last_analysis.nb_violations_by_severity.info }} info violations<i class="icon ion-ios7-arrow-right"></i>
+            </a>
+        </div>
 
-</div>
+    </ion-content>
 
-
-
-  </ion-content>
-
-<div class="bar bar-footer bar-stable">
-  <div class="title">@Marmelab</div>
-</div>
-
+    <div class="bar bar-footer bar-stable">
+        <div class="title">@Marmelab</div>
+    </div>
 
 </ion-view>

@@ -1,1 +1,47 @@
 /* Empty. Add your own CSS if you like */
+
+.headerlistitem {
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    display: block;
+    cursor: auto;
+    font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    height: 43px;
+    line-height: 10px;
+    left: 0px;
+    right: 0px;
+    text-align: center;
+    text-overflow: ellipsis;
+    top: 0px;
+    margin-bottom: -1px;
+    margin-left: -1px;
+    margin-right: -1px;
+    margin-top: -1px;
+    outline-color: rgb(240, 184, 64);
+    outline-style: none;
+    outline-width: 0px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    position: relative;
+    text-decoration: none;
+    vertical-align: baseline;
+    white-space: nowrap;
+    width: 322px;
+    z-index: 2;
+    border-top-color: rgb(221, 221, 221);
+    border-top-style: solid;
+    border-top-width: 1px;
+}
+
+.headerlistitem a {
+    text-decoration: none;
+    color: inherit;
+}

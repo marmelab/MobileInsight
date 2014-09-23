@@ -48,42 +48,24 @@ angular.module('insightMobile', [
         }
       }
     })
-    .state('app.project.violations', {
-      url: "/violations/:violationType",
+    .state('app.project_violations_severity', {
+      url: "/projects/:projectId/violations/:violationType",
       views: {
-        'projectView' :{
-          templateUrl: "templates/project_violationsByCriticity.html",
-          controller: 'ProjectViolationCtrl'
+        'menuContent' :{
+          templateUrl: "templates/project_violations_severity.html",
+          controller: 'ProjectViolationSeverityCtrl'
         }
       }
     })
-    .state('app.project.violation', {
-      url: "/violations/:violationType/:violationId",
+    .state('app.project_violations_title', {
+      url: "/projects/:projectId/violations/:violationType/:violationId",
       views: {
-        'projectView' :{
-          templateUrl: "templates/project_violation.html",
-          controller: 'ViolationCtrl'
+        'menuContent' :{
+          templateUrl: "templates/project_violations_title.html",
+          controller: 'ProjectViolationsTitleCtrl'
         }
       }
     })
-    // .state('app.projectViolations', {
-    //   url: "/projects/:projectId/violations/:violationType",
-    //   views: {
-    //     'menuContent' :{
-    //       templateUrl: "templates/projectViolations.html",
-    //       controller: 'ProjectViolationCtrl'
-    //     }
-    //   }
-    // })
-    // .state('app.violation', {
-    //   url: "/projects/:projectId/violations/:violationType/:violationId",
-    //   views: {
-    //     'menuContent' :{
-    //       templateUrl: "templates/violation.html",
-    //       controller: 'ViolationCtrl'
-    //     }
-    //   }
-    // })
     .state('app.error', {
       url: "/error",
       views: {
