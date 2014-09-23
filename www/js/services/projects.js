@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('services')
-  .service('projects', function (insight, projectparser, x2js, Restangular, $q, $http) {
+  .service('projects', function (insight, projectparser, localstorage, x2js, Restangular, $q) {
     
         var getInsightBaseUrl = function () {
             var userConf = insight.method + '://' + insight.id + ':' + insight.token;
@@ -30,7 +30,7 @@ angular.module('services')
                     return x2js.xml_str2json(data);
                 });
                 //TODO set a better cache policy
-                RestangularConfigurer.setDefaultHttpFields({cache: true})
+                RestangularConfigurer.setDefaultHttpFields({cache: false})
                 RestangularConfigurer.setBaseUrl(getInsightBaseUrl());
         });
 
@@ -52,6 +52,36 @@ angular.module('services')
             return deferred.promise;
         };
 
+        var getProjectList = function () {
+                var deferred = $q.defer();
+                var projectList = localstorage.getObject("projectList");
+                if (!projectList.lenght) {
+                        getList().then(function(projectList) {  
+                            localstorage.setObject("projectList", projectList);
+                            deferred.resolve(projectList);
+                        }, function(error) {
+                            deferred.reject(error);
+                        });
+                } else {
+                    deferred.resolve(projectList);
+                }
+
+                return deferred.promise;
+        };
+
+        var refreshProjectList = function () {
+                var deferred = $q.defer();
+                getList().then(function(refreshedProjectList){
+                    localstorage.removeObject("projectList");
+                    localstorage.setObject("projectList", refreshedProjectList);
+                    deferred.resolve(refreshedProjectList);
+                }, function(error) {
+                    deferred.reject(error);
+                });
+
+                return deferred.promise;
+        }
+
         var getOne = function (projectId) {
             var deferred = $q.defer();
             projectCrawlettangular.one('projects', projectId).get().then(function(project){
@@ -63,9 +93,41 @@ angular.module('services')
             return deferred.promise;
         };
 
+        var getProject = function (projectId) {
+                var deferred = $q.defer();
+                var project = localstorage.getObject(projectId);
+                if (project.id === undefined) {
+                        getOne(projectId).then(function(project) {  
+                            localstorage.setObject(project.id, project);
+                            deferred.resolve(project);
+                        }, function(error) {
+                            deferred.reject(error);
+                        });
+                } else {
+                    deferred.resolve(project);
+                }
+
+                return deferred.promise;
+        };
+
+        var refreshProject = function (projectId) {
+                var deferred = $q.defer();
+                getOne(projectId).then(function(refreshedProject){
+                    localstorage.removeObject(projectId);
+                    localstorage.setObject(refreshedProject.id, refreshedProject);
+                    deferred.resolve(refreshedProject);
+                }, function(error) {
+                    deferred.reject(error);
+                });
+
+                return deferred.promise;
+        }
+
         return {
-          getList: getList,
-          getOne: getOne
+          getProjectList: getProjectList,
+          refreshProjectList: refreshProjectList,
+          getProject: getProject,
+          refreshProject: refreshProject
         };
 
   });
