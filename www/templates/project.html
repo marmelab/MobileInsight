@@ -1,0 +1,55 @@
+<ion-view title="SensioLabs Insight">
+
+    <div class="bar bar-subheader">
+        <h1 class="title">{{project.name}}</h1>
+    </div>
+
+    <ion-nav-buttons side="right">
+        <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+
+    <ion-content class="has-subheader has-footer" >
+
+        <div class="row">
+            <div class="col"><img src="img/medal-{{ project.last_analysis.grade}}.png"></div>
+            <div class="col col-75">
+                <p>Analyzed {{analysisDate}}, duration: {{ duration }}.</p>
+                <p>
+                <span class="assertive"> + {{ project.last_analysis.nb_violations_new}} <i class="ion-android-arrow-up-right" data-pack="android" data-tags="chevron"></i></span> 
+                <span class="balanced"> - {{ project.last_analysis.nb_violations_fixed}} <i class="ion-android-arrow-down-right" data-pack="android" data-tags="chevron"></i></span>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col col"><span class="badge badge-energized"> {{ project.last_analysis.nb_violations}} violations</span></div>
+            <div class="col col"><span class="badge badge-large badge-dark icon-left ion-social-usd">cost : {{ cost }}</span></div>
+        </div>
+
+        <div class="list">
+            <a ng-if="project.last_analysis.violations.critical" class="item item-icon-right assertive" ui-sref="app.project_violations_severity({ projectId: project.id, violationType: 'critical' })">
+                {{ project.last_analysis.violations.critical.counter }} critical  violations<i class="icon ion-ios7-arrow-right"></i>
+            </a>
+            <a ng-if="project.last_analysis.violations.major" class="item item-icon-right energized" ui-sref="app.project_violations_severity({ projectId: project.id, violationType: 'major' })">
+                {{ project.last_analysis.violations.major.counter }} major violations<i class="icon ion-ios7-arrow-right"></i>
+            </a>
+            <a ng-if="project.last_analysis.violations.minor" class="item item-icon-right calm" ui-sref="app.project_violations_severity({ projectId: project.id, violationType: 'minor' })">
+                {{ project.last_analysis.violations.minor.counter }} minor violations<i class="icon ion-ios7-arrow-right"></i>
+            </a>
+            <a ng-if="project.last_analysis.violations.info" class="item item-icon-right dark" ui-sref="app.project_violations_severity({ projectId: project.id, violationType: 'info' })">
+                {{ project.last_analysis.violations.info.counter }} info violations<i class="icon ion-ios7-arrow-right"></i>
+            </a>
+        </div>
+
+    <button class="button button-full {{refreshProjectButtonClass}}" ng-click="refreshProject()">
+        <i class="icon {{refreshProjectIconeClass}}"></i> {{ refreshProjectTitle }}
+    </button>
+    </ion-content>
+
+    
+
+    <div class="bar bar-footer bar-stable">
+        <div class="title">@Marmelab</div>
+    </div>
+
+</ion-view>

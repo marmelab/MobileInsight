@@ -1,11 +1,84 @@
-// Ionic Starter App
+'use strict';
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('controllers', []);
+angular.module('constants', []);
+angular.module('services', ['constants', 'cb.x2js', 'restangular', 'angular-speakingurl']);
 
+angular.module('insightMobile', [
+  'ionic', 
+  'controllers',
+  'services',
+  'restangular',
+  'constants',
+  'angularMoment',
+  'angular-speakingurl'
+])
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+
+    .state('app', {
+      url: "/app",
+      abstract: true,
+      templateUrl: "templates/menu.html",
+      controller: 'GlobalCtrl'
+    })
+    .state('app.configuration', {
+      url: "/configuration",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/configuration.html",
+          controller: 'ConfigurationCtrl'
+        }
+      }
+    })
+    .state('app.projects', {
+      url: "/projects",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/projects.html",
+          controller: 'ProjectsCtrl'
+        }
+      }
+    })
+    .state('app.project', {
+      url: "/projects/:projectId",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/project.html",
+          controller: 'ProjectCtrl'
+        }
+      }
+    })
+    .state('app.project_violations_severity', {
+      url: "/projects/:projectId/violations/:violationType",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/project_violations_severity.html",
+          controller: 'ProjectViolationSeverityCtrl'
+        }
+      }
+    })
+    .state('app.project_violations_title', {
+      url: "/projects/:projectId/violations/:violationType/:violationCat/:violationTitle",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/project_violations_title.html",
+          controller: 'ProjectViolationsTitleCtrl'
+        }
+      }
+    })
+    .state('app.error', {
+      url: "/error",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/error.html",
+          controller: 'ErrorCtrl'
+        }
+      }
+    });
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/app/projects');
+})
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -18,55 +91,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       StatusBar.styleDefault();
     }
   });
-})
-
-.config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
-
-    .state('app', {
-      url: "/app",
-      abstract: true,
-      templateUrl: "templates/menu.html",
-      controller: 'AppCtrl'
-    })
-
-    .state('app.search', {
-      url: "/search",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/search.html"
-        }
-      }
-    })
-
-    .state('app.browse', {
-      url: "/browse",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/browse.html"
-        }
-      }
-    })
-    .state('app.playlists', {
-      url: "/playlists",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
-
-    .state('app.single', {
-      url: "/playlists/:playlistId",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/playlist.html",
-          controller: 'PlaylistCtrl'
-        }
-      }
-    });
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
 });
 

@@ -8,7 +8,15 @@
   "description": "Mobile client for Sensio Insight.",
   "private": "true",
   "dependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.0-beta.12"
+    "ionic": "driftyco/ionic-bower#1.0.0-beta.12",
+    "restangular": "~1.4.0",
+    "x2js": "*",
+    "angular-moment": "~0.8.2",
+    "angular-speakingurl": "~1.0.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.15",
+    "angular-scenario": "1.2.15"
   },
   "resolutions": {
     "angular": "~1.2.17"

@@ -1,0 +1,9 @@
+'use strict';
+
+angular.module('config')
+  .constant('insight', {
+    method: 'https',
+    uri: 'insight.sensiolabs.com/api/',
+    id: 'your-insight-id',
+    token: 'your-insight-token'
+});

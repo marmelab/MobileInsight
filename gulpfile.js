@@ -6,6 +6,7 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var karma = require('gulp-karma');
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -48,3 +49,17 @@ gulp.task('git-check', function(done) {
   }
   done();
 });
+
+gulp.task('test', function() {
+  return gulp.src('./foobar')
+    .pipe(karma({
+      configFile: 'test/karma.conf.js',
+      action: 'run'
+    }))
+    .on('error', function(err) {
+      // Make sure failed tests cause gulp to exit non-zero
+      console.log(err);
+      this.emit('end'); //instead of erroring the stream, end it
+    });
+});
+

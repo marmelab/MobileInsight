@@ -1,0 +1,43 @@
+<ion-view title="SensioLabs Insight">
+
+    <ion-nav-buttons side="right">
+    <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+
+    <ion-content class="has-header has-footer" >
+
+        <ul class="list">
+            <li class="headerlistitem">
+                <a ui-sref="app.project({ projectId: project.id })">{{project.name}}</a>
+            </li>
+            <li class="headerlistitem {{violationClass}}">
+                <a ui-sref="app.project_violations_severity({ projectId: project.id, violationType: violationType})">{{ violationType }} violations </a>
+            </li>
+            <li class="item item-divider">
+                {{ violationsByTitle.title }} ({{ violationCat.title }})
+            </li>
+        </ul>
+
+<p>{{ violationsByTitle.title }} </p>
+
+        <div ng-repeat="violation in violationsByTitle.violations" class="list card">
+            <div class="item">
+                <h2>{{ $index + 1 }}</h2>
+            </div>
+            <div class="item item-body">
+                <p> {{ violation.message }}</p>
+            </div>
+
+            <div ng-if="violation.line" class="item item-body">
+                <p>line: {{ violation.line }}</p>
+                <p>{{ violation.context }}</p>
+            </div>
+        </div>
+
+    </ion-content>
+
+    <div class="bar bar-footer bar-stable">
+        <div class="title">@Marmelab</div>
+    </div>
+
+</ion-view>
