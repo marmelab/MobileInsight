@@ -17,8 +17,8 @@
       </ion-item>
     </ion-list>
 
-  <button class="button button-full button-royal icon-left ion-refresh" ng-click="refreshProjectList()">
-        Refresh project list
+  <button class="button button-full {{refreshListButtonClass}}" ng-click="refreshProjectList()">
+        <i class="icon {{refreshListIconeClass}}"></i> {{ refreshListTitle }}
     </button>
 
   </ion-content>

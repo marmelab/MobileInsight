@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('controllers')
-    .controller('ProjectCtrl', function ($scope, $stateParams, $state, projects) {
+    .controller('ProjectCtrl', function ($scope, $stateParams, $state, projects, $timeout) {
             projects.getProject($stateParams.projectId).then(function(project) {
                 setProjectToScope(project)
             }, function(error) {
@@ -16,14 +16,30 @@ angular.module('controllers')
             }
 
             $scope.refreshProject = function () {
-                // TODO make ion-refresh turn when it's work
+                $scope.refreshProjectButtonClass = "button-calm";
+                $scope.refreshProjectIconeClass = "ion-refreshing";
+                $scope.refreshProjectTitle = "Updating project";
                 projects.refreshProject($stateParams.projectId).then(function(refreshedProject){
                     setProjectToScope(refreshedProject);
+                    $scope.refreshProjectButtonClass = "button-balanced";
+                    $scope.refreshProjectIconeClass = "ion-refresh";
+                    $scope.refreshProjectTitle = "Project is updated";
+                    $timeout(initRefreshProjectButton, 3000)
                 }, function(error) {
-                    //TODO display something for that
-                    console.log(error);
+                    $scope.refreshProjectButtonClass = "button-assertive";
+                    $scope.refreshProjectIconeClass = "ion-refresh";
+                    $scope.refreshProjectTitle = "Failed to update";
+                    $timeout(initRefreshProjectButton, 3000)
                 });
-            }
+            };
+
+        var initRefreshProjectButton = function () {
+            $scope.refreshProjectButtonClass = "button-stable";
+            $scope.refreshProjectIconeClass = "ion-refresh";
+            $scope.refreshProjectTitle = "Refresh project";
+        };
+
+        initRefreshProjectButton();
             
     })
     .controller('ProjectViolationSeverityCtrl', function ($scope, $stateParams, $state, projects, localstorage) {
