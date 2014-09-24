@@ -1,6 +1,6 @@
-# Sensio Insight Mobile Client
+# SensioLabsInsight Mobile Client
 
-Mobile Client for IOS (then Android and FirefoxOs) for [Sensio Insight](https://insight.sensiolabs.com), created with [Ionic](http://ionicframework.com/) and [AngularJS](https://angularjs.org/).
+Mobile Client for IOS (then Android and FirefoxOs) for [SensioLabsInsight](https://insight.sensiolabs.com), the PHP Project Quality service, created with [Ionic](http://ionicframework.com/) and [AngularJS](https://angularjs.org/).
 
 ## Installation
 
