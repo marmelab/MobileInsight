@@ -8,7 +8,7 @@ http://marmelab.com/blog/2014/09/26/mobile-insight-angular-ionic.html
 
 ## Installation
 
-Copy the file `www/js/config/insight-conf.js-dist` to `www/js/config/insight-conf.js`, and set your insight id and token in it.
+Copy the file `www/js/config/insight.js-dist` to `www/js/config/insight.js`, and set your insight id and token in it (you can find them in your [insight account page](https://insight.sensiolabs.com/account)).
 
 You must have `node`, `gulp` and `ionic` on your system. Then:
 
