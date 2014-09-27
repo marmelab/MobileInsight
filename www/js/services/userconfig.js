@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('services')
-  .service('userconfig', function (insight, x2js, Restangular, $q) {
+  .service('userconfig', function (insight, Restangular, $q) {
 
         var test = function(userdatas) {
             var deferred = $q.defer();
